@@ -19,5 +19,4 @@ const RoutesViews = () => {
   );
 };
 
-
 export default RoutesViews;
