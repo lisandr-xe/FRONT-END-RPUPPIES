@@ -1,12 +1,12 @@
 import { BrowserRouter as RutasRollingPuppies } from "react-router-dom";
-import RoutesViews from "./assets/routes/RoutesViews";
+import RoutesViews from "./routes/RoutesViews";
 
 function App() {
-    return (
-        <RutasRollingPuppies>
-            <RoutesViews/>
-        </RutasRollingPuppies>
-    );
+  return (
+    <RutasRollingPuppies>
+      <RoutesViews />
+    </RutasRollingPuppies>
+  );
 }
 
 export default App;
