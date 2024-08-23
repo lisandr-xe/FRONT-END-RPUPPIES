@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { Table } from 'react-bootstrap';
 import $ from 'jquery';
+import DataTable from 'datatables.net-dt';
 
 const ServicesTable = ({ services }) => {
     const [servicesState, setServicesState] = useState(services); // Inicializa el estado con los servicios pasados como prop
@@ -14,7 +15,7 @@ const ServicesTable = ({ services }) => {
         setServicesState(updatedServices);
     };
 
-    const funcionActivoInactivo = (id) => {
+    const handleToggleActivo = (id) => {
         const servicio = servicesState.find(service => service.id === id);
         if (servicio) {
             cambiarPropiedad(id, 'activo', !servicio.activo);
@@ -44,7 +45,7 @@ const ServicesTable = ({ services }) => {
                         <td>{service.descripcion}</td>
                         <td>{service.costo}</td>
                         <td>
-                            <Button onClick={() => funcionActivoInactivo(service.id)}>
+                            <Button onClick={() => handleToggleActivo(service.id)}>
                                 {service.activo ? 'Activo' : 'Inactivo'}
                             </Button>
                         </td>

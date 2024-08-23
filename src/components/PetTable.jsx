@@ -3,7 +3,6 @@ import { Table } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button'
 import $ from 'jquery';
 import DataTable from 'datatables.net-react';
-import 'datatables.net-dt/css/dataTables.dataTables.css';
 
     
     const PetTable = ({ pets }) => {
