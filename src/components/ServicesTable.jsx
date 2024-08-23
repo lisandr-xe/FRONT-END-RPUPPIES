@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { Table } from 'react-bootstrap';
 import $ from 'jquery';
 import DataTable from 'datatables.net-dt';
+import 'datatables.net-dt/css/dataTables.dataTables.min.css';
 
 const ServicesTable = ({ services }) => {
     const [servicesState, setServicesState] = useState(services); // Inicializa el estado con los servicios pasados como prop
