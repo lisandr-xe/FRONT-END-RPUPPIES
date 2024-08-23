@@ -3,13 +3,22 @@ import Button from 'react-bootstrap/Button';
 import { Table } from 'react-bootstrap';
 import $ from 'jquery';
 
-
 const ServicesTable = ({ services }) => {
-    const [activo, setActivo] = useState(false);
+    const [servicesState, setServicesState] = useState(services); // Inicializa el estado con los servicios pasados como prop
     const tablaservicios = useRef();
 
-    const activarDesactivar = () => {
-        setActivo(!activo);
+    const cambiarPropiedad = (id, propiedad, valor) => {
+        const updatedServices = servicesState.map(service =>
+            service.id === id ? { ...service, [propiedad]: valor } : service
+        );
+        setServicesState(updatedServices);
+    };
+
+    const funcionActivoInactivo = (id) => {
+        const servicio = servicesState.find(service => service.id === id);
+        if (servicio) {
+            cambiarPropiedad(id, 'activo', !servicio.activo);
+        }
     };
 
     useEffect(() => {
@@ -29,14 +38,14 @@ const ServicesTable = ({ services }) => {
                 </tr>
             </thead>
             <tbody>
-                {services.map((services, id) => (
+                {servicesState.map((service, id) => (
                     <tr key={id}>
-                        <td>{services.servicio}</td>
-                        <td>{services.descripcion}</td>
-                        <td>{services.costo}</td>
+                        <td>{service.servicio}</td>
+                        <td>{service.descripcion}</td>
+                        <td>{service.costo}</td>
                         <td>
-                        <Button onClick={activarDesactivar}>
-                                {activo ? 'Activo' : 'Inactivo'}
+                            <Button onClick={() => funcionActivoInactivo(service.id)}>
+                                {service.activo ? 'Activo' : 'Inactivo'}
                             </Button>
                         </td>
                         <td><Button variant='danger'>Eliminar</Button></td>
