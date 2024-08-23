@@ -14,63 +14,88 @@
     --color-negro: #000;
 }
 
-.bg-color-fondo{
+.bgColorFondo{
     background-color: var(--color-fondo);
 }
 
-.bg-color-principal {
+.bgColorPrincipal {
     background-color: var(--color-1);
 }
 
-.bg-color-opuesto {
+.bgColorOpuesto {
     background-color: var(--color-complementario-I);
 }
 
-.btn-personalized-1 {
+.btnPersonalized1 {
     background-color: var(--color-complementario-I);
     color: var(--color-blanco);
 }
 
-.btn-personalized-1:hover {
+.btnPersonalized1:hover {
     background-color: var(--color-complementario-II);
     color: var(--color-blanco);
 }
 
-.btn-personalized-2 {
+.btnPersonalized1:disabled {
+    background-color: #d3d3d3;
+    color: #a9a9a9;
+    cursor: not-allowed;
+}
+
+.btnPersonalized2 {
     background-color: var(--color-5);
     color: var(--color-blanco);
 }
 
-.btn-personalized-2:hover {
+.btnPersonalized2:hover {
     background-color: var(--color-6);
     color: var(--color-blanco);
 }
 
-.btn-personalized-3 {
+.btnPersonalized2:disabled {
+    background-color: #d3d3d3;
+    color: #a9a9a9;
+    cursor: not-allowed;
+}
+
+.btnPersonalized3 {
     background-color: var(--color-7);
     color: var(--color-blanco);
 }
 
-.btn-personalized-3:hover {
+.btnPersonalized3:hover {
     background-color: var(--color-8);
     color: var(--color-blanco);
 }
 
-.btn-personalized-4 {
+.btnPersonalized3:disabled {
+    background-color: #d3d3d3;
+    color: #a9a9a9;
+    cursor: not-allowed;
+}
+
+.btnPersonalized4 {
     background-color: var(--color-1);
     color: var(--color-blanco);
 }
 
-.btn-personalized-4:hover {
+.btnPersonalized4:hover {
     background-color: var(--color-2);
     color: var(--color-blanco);
 }
 
-.bg-input {
+.btnPersonalized4:disabled {
+    background-color: #d3d3d3;
+    color: #a9a9a9;
+    cursor: not-allowed;
+}
+
+
+.bgInput {
     border: 1.8px solid var(--color-2);
 }
 
-.bg-input:focus {
+.bgInput:focus {
     border: 2px solid var(--color-2);
     box-shadow: 0 0 0 0.2rem var(--color-2);
 }
