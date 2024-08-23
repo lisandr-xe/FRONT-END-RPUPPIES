@@ -3,11 +3,8 @@ import Button from 'react-bootstrap/Button'
 import { Table } from 'react-bootstrap';
 import $ from 'jquery';
 import DataTable from 'datatables.net-react';
-import DT from 'datatables.net-dt';
- 
-DataTable.use(DT);
 
-const PetTable = ({ pets }) => {
+const PetTable = ({pets}) => {
     const tablapets = useRef();
 
     useEffect(() => {
@@ -15,7 +12,7 @@ const PetTable = ({ pets }) => {
     }, []);
 
     return (
-       <Table  ref={tableRef}>
+       <Table  ref={tablapets}>
             <thead>
                 <tr>
                     <th>Nombre</th>
