@@ -1,5 +1,6 @@
 import React from 'react'
 import PetTable from '../components/PetTable'
+import DataTable from 'datatables.net-react';
 
 const AdministradorPets = () => {
    
@@ -12,7 +13,7 @@ const AdministradorPets = () => {
 
     return (
         <div className="container text-align">
-            <h1 className="my-4">Tabla de Mascotas</h1>
+         <h1 className="my-4">Tabla de Mascotas</h1>
             <PetTable pets={pets} />
         </div>
     );

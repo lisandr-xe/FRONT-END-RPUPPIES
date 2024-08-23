@@ -12,8 +12,8 @@ const PetTable = ({pets}) => {
     }, []);
 
     return (
-       <Table  ref={tablapets}>
-            <thead>
+       <Table striped bordered hover ref={tablapets} className='text-center'>
+            <thead >
                 <tr>
                     <th>Nombre</th>
                     <th>Especie</th>
