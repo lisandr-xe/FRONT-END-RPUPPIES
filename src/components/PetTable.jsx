@@ -1,18 +1,21 @@
 import React, { useEffect, useRef } from 'react';
-import Button from 'react-bootstrap/Button'
 import { Table } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button'
 import $ from 'jquery';
 import DataTable from 'datatables.net-react';
+import 'datatables.net-dt/css/dataTables.dataTables.css';
 
-const PetTable = ({pets}) => {
-    const tablapets = useRef();
+    
+    const PetTable = ({ pets }) => {
+        const tablapets = useRef();
+    
+        useEffect(() => {
+            $(tablapets.current).DataTable();
+        }, []);
 
-    useEffect(() => {
-        $(tablapets.current).DataTable();
-    }, []);
 
     return (
-       <Table striped bordered hover ref={tablapets} className='text-center'>
+       <Table className='text-center' striped bordered hover ref={tablapets} >
             <thead >
                 <tr>
                     <th>Nombre</th>
@@ -20,7 +23,7 @@ const PetTable = ({pets}) => {
                     <th>Raza</th>
                     <th>Edad</th>
                     <th>Dueño</th>
-                    <th>Historial Clinica</th>
+                    <th>Historia Clinica</th>
                 </tr>
             </thead>
             <tbody>
