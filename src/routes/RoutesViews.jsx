@@ -3,13 +3,14 @@ import HomePage from "../pages/HomePage";
 import AdministradorPage from "../pages/AdministradorPage";
 import Error404Page from "../pages/Error404Page";
 import { usePageTitle } from "../helpers/usePageTitle";
+import NavbarC from "../components/NavbarC";
 
 const RoutesViews = () => {
   const location = useLocation();
   usePageTitle(location.pathname);
   return (
     <>
-      {/* AQUI VA EL NAVBAR */}
+      <NavbarC />
       <Routes>
         <Route path="/administrador" element={<AdministradorPage />} />
         <Route path="/" element={<HomePage />} />
