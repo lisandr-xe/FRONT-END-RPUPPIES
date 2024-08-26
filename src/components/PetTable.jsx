@@ -14,7 +14,7 @@ import 'datatables.net-dt/css/dataTables.dataTables.min.css';
 
 
     return (
-       <Table className='text-center' striped bordered hover ref={tablapets} >
+       <Table striped bordered hover ref={tablapets} >
             <thead >
                 <tr>
                     <th>Nombre</th>

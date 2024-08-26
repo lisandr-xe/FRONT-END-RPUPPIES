@@ -28,7 +28,7 @@ const ServicesTable = ({ services }) => {
     }, []);
 
     return (
-        <Table striped bordered hover ref={tablaservicios} className='text-center'>
+        <Table striped bordered hover ref={tablaservicios} >
             <thead>
                 <tr>
                     <th>Servicio</th>

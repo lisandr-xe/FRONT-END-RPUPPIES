@@ -5,6 +5,7 @@ import Error404Page from "../pages/Error404Page";
 import AdministradorPets from "../pages/AdministradorPets";
 import NavbarC from "../components/NavbarC";
 import AdministradorServices from "../pages/AdministradorServices";
+import AdministradorTurnos from "../pages/AdministradorTurnos";
 
 const RoutesViews = () => {
   return (
@@ -13,6 +14,7 @@ const RoutesViews = () => {
       <Routes>
         <Route path="/administrador/pets" element={<AdministradorPets />} />
         <Route path="/administrador/services" element={<AdministradorServices />} />  
+        <Route path="/administrador/turnos" element={<AdministradorTurnos />} />
         <Route path="/administrador" element={<AdministradorPage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<Error404Page />} />
