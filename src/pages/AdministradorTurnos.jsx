@@ -1,5 +1,6 @@
 import React from 'react'
 import TableTurnos from '../components/TableTurnos';
+import BannerAdminView from '../components/BannerAdminView';
 
 
 const AdministradorTurnos = () => {
@@ -78,10 +79,15 @@ const AdministradorTurnos = () => {
       ];
 
     return (
+        <>
+        <div>
+            <BannerAdminView/>
+        </div>
         <div className="container text-align">
-         <h1 className="my-4">Tabla de Mascotas</h1>
+         <h1 className="text-center my-4">Tabla de Turnos</h1>
             <TableTurnos turnos={turnos} />
         </div>
+        </>
     );
 };
 

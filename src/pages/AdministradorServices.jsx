@@ -1,5 +1,6 @@
 import React from 'react'
 import ServicesTable from '../components/ServicesTable'
+import BannerAdminView from '../components/BannerAdminView';
 
 const AdministradorServices = () => {
   
@@ -79,10 +80,15 @@ const AdministradorServices = () => {
   
   
     return (
+      <>
+      <div>
+          <BannerAdminView/>
+      </div>
       <div className="container text-align">
-         <h1 className="my-4">Tabla de Servicios</h1>
+         <h1 className="text-center my-4">Tabla de Servicios</h1>
             <ServicesTable services={services} />
         </div>
+      </>
   )
 }
 
