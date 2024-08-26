@@ -20,6 +20,10 @@
   --fuente-secundaria: "Montserrat", sans-serif;
 }
 
+nav {
+  z-index: 1000;
+}
+
 .bg-color-fondo {
   background-color: var(--color-fondo);
 }

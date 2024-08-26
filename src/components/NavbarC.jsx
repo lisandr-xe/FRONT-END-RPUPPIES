@@ -19,7 +19,7 @@ const NavbarC = () => {
 
   return (
     <>
-      <Navbar expand="lg" className="bg-color-fondo text-poppins mb-3">
+      <Navbar expand="lg" className="text-poppins">
         <Container fluid>
           <Navbar.Brand className="me-5" href="#home">
             <Image src={imgLogo} width={130} />
@@ -67,12 +67,17 @@ const NavbarC = () => {
                   </Link>
                 </>
               )}
-              <Link
-                to={userLogged ? "/user-profile" : "/login"}
-                className="nav-link"
-              >
-                <i className="bi bi-person-circle fs-1"></i>
-              </Link>
+              {userLogged ? (
+                <>
+                  <Link to="#" className="nav-link">
+                    <i class="bi bi-person-circle fs-1 me-2"></i>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <button className="btn-1 w-100">Iniciar Sesión</button>
+                </>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
