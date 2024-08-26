@@ -8,7 +8,7 @@ const BannerC = () => {
           <div className="banner-text-wrapper">
             <h2 className="banner-title">Rolling Puppies</h2>
             <p className="banner-text">
-              Tenemos un compromiso de brindarles a tí y a tus mascotas el mejor
+              Tenemos el compromiso de brindarles a tí y a tus mascotas el mejor
               cuidado posible.
             </p>
             <div className="banner-btn">

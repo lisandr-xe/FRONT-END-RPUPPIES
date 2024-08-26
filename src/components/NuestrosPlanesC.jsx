@@ -41,10 +41,10 @@ const NuestrosPlanesC = () => {
 
   return (
     <>
-      <h2 className="text-montserrat fs-1 text-center mt-3 mb-5">
-        Nuestros Planes
-      </h2>
-      <Container className="my-3">
+      <Container fluid className="bg-color-fondo">
+        <h2 className="text-montserrat fs-1 text-center py-5">
+          Nuestros Planes
+        </h2>
         <Row className="d-flex justify-content-center align-items-center">
           {listaPlanes.map((plan) => (
             <Col xs={12} md={6} lg={4}>

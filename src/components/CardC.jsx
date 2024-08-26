@@ -11,7 +11,7 @@ const CardC = ({ image, title, bodyContent, buttonContent }) => {
 
   return (
     <>
-      <Card className="border-0">
+      <Card className="border-0 bg-transparent">
         <Container className="d-flex justify-content-center align-items-center">
           <div className="p-3 circular--image">
             <Card.Img src={image} />

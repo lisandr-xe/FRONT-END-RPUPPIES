@@ -6,7 +6,6 @@ const HomePage = () => {
   return (
     <>
       <BannerC />
-      <h1>HOME PAGE</h1>
       <NuestrosPlanesC />
       <DireccionC />
     </>
