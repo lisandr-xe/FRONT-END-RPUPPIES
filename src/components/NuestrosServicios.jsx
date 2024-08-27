@@ -1,4 +1,5 @@
 import styleNuestrosServicios from '../css/nuestrosServicios.module.css';
+import stylePrincipal from '../index.module.css';
 import consultorioVeterinario from '../assets/img/consultorio-veterinario.svg';
 import internacionDiurna from '../assets/img/internacion-diurna.svg';
 import laboratorioPropio from '../assets/img/laboratorio.svg';
