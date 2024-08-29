@@ -4,6 +4,7 @@ import { Table } from 'react-bootstrap';
 import $ from 'jquery';
 import DataTable from 'datatables.net-dt';
 import 'datatables.net-dt/css/dataTables.dataTables.min.css';
+import '../index.css';
 
 const ServicesTable = ({ services }) => {
     const [servicesState, setServicesState] = useState(services); // Inicializa el estado con los servicios pasados como prop
@@ -28,7 +29,7 @@ const ServicesTable = ({ services }) => {
     }, []);
 
     return (
-        <Table striped bordered hover ref={tablaservicios} >
+        <table striped bordered hover ref={tablaservicios} >
             <thead>
                 <tr>
                     <th>Servicio</th>
@@ -55,7 +56,7 @@ const ServicesTable = ({ services }) => {
                     </tr>
                 ))}
             </tbody>
-        </Table>
+        </table>
     );
 }
 

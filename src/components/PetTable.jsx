@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import $ from 'jquery';
 import DataTable from 'datatables.net-react';
 import 'datatables.net-dt/css/dataTables.dataTables.min.css';
+import '../index.css';
     
     const PetTable = ({ pets }) => {
         const tablapets = useRef();
@@ -14,7 +15,7 @@ import 'datatables.net-dt/css/dataTables.dataTables.min.css';
 
 
     return (
-       <Table striped bordered hover ref={tablapets} >
+       <table striped bordered hover ref={tablapets} >
             <thead >
                 <tr>
                     <th>Nombre</th>
@@ -37,7 +38,7 @@ import 'datatables.net-dt/css/dataTables.dataTables.min.css';
                     </tr>
                 ))}
             </tbody>
-        </Table>
+        </table>
     );
 };
 

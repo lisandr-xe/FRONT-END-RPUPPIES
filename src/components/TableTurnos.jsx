@@ -4,6 +4,7 @@ import { Table } from 'react-bootstrap';
 import $ from 'jquery';
 import DataTable from 'datatables.net-dt';
 import 'datatables.net-dt/css/dataTables.dataTables.min.css';
+import '../index.css';
 
 const TableTurnos = ({turnos}) => {
     const tablaturnos = useRef();
@@ -14,7 +15,7 @@ const TableTurnos = ({turnos}) => {
 
 
 return (
-   <Table striped bordered hover ref={tablaturnos} >
+   <table striped bordered hover ref={tablaturnos} >
         <thead >
             <tr>
                 <th>Fecha</th>
@@ -37,7 +38,7 @@ return (
                 </tr>
             ))}
         </tbody>
-    </Table>
+    </table>
 );
 };
 
