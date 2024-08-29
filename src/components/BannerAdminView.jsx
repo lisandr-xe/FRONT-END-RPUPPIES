@@ -8,21 +8,11 @@ import '../index.css';
 const BannerAdminView = () => {
     
 
-  const CustomButton = styled(Button)`
-    background-color: #436986;
-    color: #fff;    
-    display: inline-block;
-    border-radius: 10px;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-`;
-
   return (
     <>
     <div className='container d-flex w-100 my-5'>
       <div className='container d-flex flex-column w-25'>
-        <CustomButton className='py-1 my-1' href="/administrador/services">Servicios</CustomButton>
+        <a className='py-1 my-1' href="/administrador/services">Servicios</a>
         <a className='btnPersonalizedadm4 py-1 my-1' href="/administrador/pets">Mascotas</a>
         <a className='btnPersonalizedadm4 py-1 my-1' href="/administrador/turnos">Turnos</a>
       </div>
