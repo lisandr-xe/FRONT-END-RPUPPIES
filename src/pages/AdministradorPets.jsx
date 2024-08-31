@@ -23,7 +23,7 @@ const AdministradorPets = () => {
         <div>
             <BannerAdminView/>
         </div>
-        <div className="container text-align">
+        <div className="container text-align fontPage">
          <h1 className="text-center my-4">Tabla de Mascotas</h1>
             <PetTable pets={pets} />
         </div>

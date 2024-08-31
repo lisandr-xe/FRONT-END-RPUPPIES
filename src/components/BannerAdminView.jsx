@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import styled from 'styled-components';
 import '../index.css';
 
 
@@ -10,11 +9,11 @@ const BannerAdminView = () => {
 
   return (
     <>
-    <div className='container d-flex w-100 my-5'>
+    <div className='container d-flex w-100 my-5 fontPage'>
       <div className='container d-flex flex-column w-25'>
-        <a className='btnPersonalizedadm4 py-1 my-1' href="/administrador/services">Servicios</a>
-        <a className='btnPersonalizedadm4 py-1 my-1' href="/administrador/pets">Mascotas</a>
-        <a className='btnPersonalizedadm4 py-1 my-1' href="/administrador/turnos">Turnos</a>
+        <Button className='btnPersonalized4 py-1 my-1' href="/administrador/services">Servicios</Button>
+        <Button className='btnPersonalized4 py-1 my-1' href="/administrador/pets">Mascotas</Button>
+        <Button className='btnPersonalized4 py-1 my-1' href="/administrador/turnos">Turnos</Button>
       </div>
       <div className='container d-flex justify-content-center align-items-center flex-column mx-100'>
         <h3 className='conatainer'>Bienvenido!</h3>
@@ -23,15 +22,14 @@ const BannerAdminView = () => {
       </div>
       <div className='container d-flex w-25 align-items-stretch'>
         <>{location.pathname === '/administrador/turnos' && (
-        <a className='container d-flex align-items-center justify-content-center btnPersonalizedadm4'>Agregar Turno</a>
+        <Button className='btnPersonalized4 container d-flex align-items-center justify-content-center'>Agregar Turno</Button>
         )}
         </>
         <>{location.pathname === '/administrador/services' && (
-        <a className='container d-flex align-items-center justify-content-center btnPersonalizedadm4'>Agregar Servicio</a>
+        <Button className='btnPersonalized4 container d-flex align-items-center justify-content-center'>Agregar Servicio</Button>
         )}
         </>
       </div>
-
     </div>
     </>
   )

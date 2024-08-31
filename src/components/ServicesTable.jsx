@@ -25,38 +25,52 @@ const ServicesTable = ({ services }) => {
     };
 
     useEffect(() => {
-        $(tablaservicios.current).DataTable();
+        const table = $(tablaservicios.current).DataTable({
+            responsive: true,
+            autoWidth: false,
+            paging: true,
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            }
+        });
+        return () => {
+            if ($.fn.dataTable.isDataTable(tablaservicios.current)) {
+                table.destroy();
+            }
+        };
     }, []);
 
     return (
-        <table striped bordered hover ref={tablaservicios} >
+        <div className='table-responsive'>
+        <table className='display nowrap fontPage' ref={tablaservicios} >
             <thead>
                 <tr>
-                    <th>Servicio</th>
-                    <th>Descripción</th>
-                    <th>Costo</th>
-                    <th>Estado</th>
-                    <th>Eliminar</th>
-                    <th>Editar</th>
+                    <th className='text-center'>Servicio</th>
+                    <th className='text-center'>Descripción</th>
+                    <th className='text-center'>Costo</th>
+                    <th className='text-center'>Estado</th>
+                    <th className='text-center'>Eliminar</th>
+                    <th className='text-center'>Editar</th>
                 </tr>
             </thead>
             <tbody>
                 {servicesState.map((service, id) => (
                     <tr key={id}>
-                        <td>{service.servicio}</td>
-                        <td>{service.descripcion}</td>
-                        <td>{service.costo}</td>
-                        <td>
-                            <Button onClick={() => handleToggleActivo(service.id)}>
+                        <td className='text-center'>{service.servicio}</td>
+                        <td className='text-center'>{service.descripcion}</td>
+                        <td className='text-center'>{service.costo}</td>
+                        <td className='text-center'>
+                            <Button className='btnPersonalized2'onClick={() => handleToggleActivo(service.id)}>
                                 {service.activo ? 'Activo' : 'Inactivo'}
                             </Button>
                         </td>
-                        <td><Button variant='danger'>Eliminar</Button></td>
-                        <td><Button>Editar</Button></td>
+                        <td className='text-center'><Button className='btnPersonalized1'>Eliminar</Button></td>
+                        <td className='text-center'><Button className='btnPersonalized3'>Editar</Button></td>
                     </tr>
                 ))}
             </tbody>
         </table>
+        </div>
     );
 }
 
