@@ -1,28 +1,60 @@
-import { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import "../css/CardC.css";
 
-const CardC = ({ image, title, bodyContent, buttonContent }) => {
-  useEffect(() => {
-    console.log(image);
-  }, []);
-
+const CardC = ({ cardID, image, title, body, buttonText }) => {
   return (
     <>
-      <Card className="border-0 bg-transparent">
-        <Container className="d-flex justify-content-center align-items-center">
-          <div className="p-3 circular--image">
+      <Card
+        className={
+          cardID === "testimonials" ? "card--wrapper__testimonials" : undefined
+        }
+      >
+        <Card.Body
+          className={
+            cardID === "testimonials"
+              ? "card--body-wrapper__testimonials"
+              : undefined
+          }
+        >
+          <Container
+            className={
+              cardID === "testimonials" ? "card--img__testimonials" : undefined
+            }
+          >
             <Card.Img src={image} />
-          </div>
-        </Container>
-        <Card.Body>
-          <Card.Title className="fs-3 text-center">{title}</Card.Title>
-          <Card.Text className="text-center mb-4">{bodyContent}</Card.Text>
-          <Container className="d-flex justify-content-center">
-            <button className="btn-1">{buttonContent}</button>
           </Container>
+          <Card.Title
+            className={
+              cardID === "testimonials"
+                ? "card--title__testimonials"
+                : undefined
+            }
+          >
+            {title}
+          </Card.Title>
+          <Container>
+            <Card.Text
+              className={
+                cardID === "testimonials"
+                  ? "card--body__testimonials"
+                  : undefined
+              }
+            >
+              {cardID === "testimonials" && (
+                <div className="testimonial--quotes">
+                  <i className="bi bi-quote"></i>
+                </div>
+              )}
+              {body}
+            </Card.Text>
+            {cardID === "testimonials" && (
+              <div className="chat--wrapper">
+                <div className="testimonial-triangle"></div>
+              </div>
+            )}
+          </Container>
+          {cardID !== "testimonials" && <Button>{buttonText}</Button>}
         </Card.Body>
       </Card>
     </>

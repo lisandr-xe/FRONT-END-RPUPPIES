@@ -47,7 +47,7 @@ const NuestrosPlanesC = () => {
         </h2>
         <Row className="d-flex justify-content-center align-items-center">
           {listaPlanes.map((plan) => (
-            <Col xs={12} md={6} lg={4}>
+            <Col xs={12} md={6} lg={4} key={plan.title}>
               <CardC
                 key={plan.title}
                 image={plan.image}

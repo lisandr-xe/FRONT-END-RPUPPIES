@@ -40,7 +40,7 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
-  width: 50%;
+  width: fit-content;
 }
 
 .btn-1:hover,

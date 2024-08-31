@@ -19,7 +19,7 @@ const NavbarC = () => {
 
   return (
     <>
-      <Navbar expand="lg" className="text-poppins">
+      <Navbar expand="lg" className="bg-color-principal text-poppins p-0">
         <Container fluid>
           <Navbar.Brand className="me-5" href="#home">
             <Image src={imgLogo} width={130} />
@@ -29,10 +29,10 @@ const NavbarC = () => {
             {userRole === "admin" ? (
               <>
                 <Nav className="me-auto d-flex gap-4">
-                  <Link className="nav-link fw-medium" href="#home">
+                  <Link className="nav-link fw-medium text-white" href="#home">
                     Usuarios
                   </Link>
-                  <Link className="nav-link fw-medium" href="#link">
+                  <Link className="nav-link fw-medium text-white" href="#link">
                     Administrar Turnos
                   </Link>
                 </Nav>
@@ -40,16 +40,16 @@ const NavbarC = () => {
             ) : (
               <>
                 <Nav className="me-auto d-flex gap-4">
-                  <Link to="#" className="nav-link fw-medium">
+                  <Link to="#" className="nav-link fw-medium text-white">
                     Nosotros
                   </Link>
-                  <Link to="#" className="nav-link fw-medium">
+                  <Link to="#" className="nav-link fw-medium text-white">
                     Servicios
                   </Link>
-                  <Link to="#" className="nav-link fw-medium">
+                  <Link to="#" className="nav-link fw-medium text-white">
                     Planes
                   </Link>
-                  <Link to="#" className="nav-link fw-medium">
+                  <Link to="#" className="nav-link fw-medium text-white">
                     Contacto
                   </Link>
                 </Nav>
@@ -75,7 +75,10 @@ const NavbarC = () => {
                 </>
               ) : (
                 <>
-                  <button className="btn-1 w-100">Iniciar Sesión</button>
+                  <div className="d-flex gap-2">
+                    <button className="btn-1">Iniciar Sesión</button>
+                    <button className="btn-1">Registrarse</button>
+                  </div>
                 </>
               )}
             </Nav>

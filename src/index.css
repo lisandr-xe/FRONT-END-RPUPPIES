@@ -26,6 +26,10 @@ nav {
   z-index: 1000;
 }
 
+.text-white {
+  color: var(--color-blanco);
+}
+
 .bg-color-fondo {
   background-color: var(--color-fondo);
 }
