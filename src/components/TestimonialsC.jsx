@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "./SwiperC";
+import { Navigation, Pagination, EffectCoverflow } from "swiper/modules";
 
 import CardC from "./CardC";
 import "../css/TestimonialsC.css";
@@ -70,7 +71,49 @@ const TestimonialsC = () => {
         sus mascotas
       </h3>
       <Container className="testimonials--container mb-5">
-        <Swiper pagination={true}>
+        <Swiper
+          modules={[Navigation, Pagination, EffectCoverflow]}
+          navigation={{
+            prevEl: ".prev-btn-swiper",
+            nextEl: ".next-btn-swiper",
+          }}
+          pagination={{
+            el: ".swiper-pagination",
+          }}
+          effect="coverflow"
+          coverflowEffect={{
+            rotate: -10,
+            stretch: 0,
+            depth: 150,
+            modifier: 1,
+            slideShadows: true,
+          }}
+          spaceBetween={120}
+          slidesPerView={2.5}
+          centeredSlides={true}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 120,
+            },
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 120,
+            },
+            480: {
+              slidesPerView: 1,
+              spaceBetween: 90,
+            },
+            768: {
+              slidesPerView: 1,
+              spaceBetween: 90,
+            },
+            1024: {
+              slidesPerView: 2.5,
+              spaceBetween: 10,
+            },
+          }}
+        >
           {testimonials.map((testimonial) => (
             <SwiperSlide key={testimonial.nombre}>
               <CardC

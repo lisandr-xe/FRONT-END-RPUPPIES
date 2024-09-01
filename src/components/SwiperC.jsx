@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { register } from "swiper/element";
-import { Navigation, Pagination, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -16,49 +15,6 @@ export const Swiper = (props) => {
 
     const params = {
       ...rest,
-      modules: [Navigation, Pagination, EffectCoverflow],
-      navigation: {
-        prevEl: ".prev-btn-swiper",
-        nextEl: ".next-btn-swiper",
-      },
-      pagination: {
-        el: ".swiper-pagination",
-      },
-      effect: "coverflow",
-      coverflowEffect: {
-        rotate: -10,
-        stretch: 0,
-        depth: 150,
-        modifier: 1,
-        slideShadows: true,
-      },
-      spaceBetween: 120,
-      slidesPerView: 2.5,
-      centeredSlides: true,
-      breakpoints: {
-        0: {
-          slidesPerView: 1,
-          spaceBetween: 120,
-        },
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 120,
-        },
-        // when window width is >= 480px
-        480: {
-          slidesPerView: 1,
-          spaceBetween: 90,
-        },
-        // when window width is >= 640px
-        768: {
-          slidesPerView: 1,
-          spaceBetween: 90,
-        },
-        1024: {
-          slidesPerView: 2.5,
-          spaceBetween: 10,
-        },
-      },
     };
 
     Object.assign(swiperRef.current, params);
