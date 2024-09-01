@@ -3,7 +3,20 @@ import imgLogo from "../assets/img/rolling_puppies_logo.png";
 import { Link } from "react-router-dom";
 import "../css/FooterC.css";
 
+//PARA EL MODAL: PONERLO DONDE CORRESPONDA
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+import "../css/ModalTurnos.css";
+
 const FooterC = () => {
+  //PARA EL MODAL: PONERLO DONDE CORRESPONDA
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <>
       <Container fluid className="pt-4 bg-color-fondo">
@@ -90,7 +103,9 @@ const FooterC = () => {
                   <p className="fs-5 m-0">8:00 a 20:00</p>
                 </div>
                 <div className="mt-3">
-                  <button className="btn-1">Reservar Turno</button>
+                  <button className="btn-1" onClick={handleShow}>
+                    Reservar Turno
+                  </button>
                 </div>
               </div>
             </div>
@@ -126,6 +141,77 @@ const FooterC = () => {
           </Col>
         </Row>
       </Container>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Editar/Agregar Turno</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Container>
+              <Row className="align-items-center">
+                <Col xs={12} md={6}>
+                  <Form.Group className="mb-3" controlId="fechaTurno">
+                    <Form.Label>Fecha</Form.Label>
+                    <Form.Control type="date" aria-label="Date" />
+                  </Form.Group>
+                </Col>
+                <Col xs={12} md={6}>
+                  <Form.Group className="mb-3" controlId="horaTurno">
+                    <Form.Label>Hora</Form.Label>
+                    <Form.Control type="time" aria-label="Time" />
+                  </Form.Group>
+                </Col>
+                <Col xs={12} md={6}>
+                  <Form.Group className="mb-3" controlId="veterinarioTurno">
+                    <Form.Label>Veterinario</Form.Label>
+                    <Form.Select aria-label="seleccionar-veterinario">
+                      <option>Elija al veterinario</option>
+                      <option value="1">Fernando Salomón</option>
+                      <option value="2">Maximiliano Soriano</option>
+                      <option value="3">Marcos Bazán</option>
+                      <option value="4">Lisandro Contreras </option>
+                      <option value="5">Gonzalo Mainardi</option>
+                      <option value="6">Cualquiera</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+                <Col xs={12} md={6}>
+                  <Form.Group className="mb-3" controlId="mascotaTurno">
+                    <Form.Label>Elija a su Mascota</Form.Label>
+                    <Form.Select aria-label="seleccionar-mascota">
+                      <option>Elija a su mascota</option>
+                      <option value="1">Mascota 1</option>
+                      <option value="2">Mascota 2</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+
+                <Col
+                  lg={12}
+                  className="d-flex justify-content-center gap-3 mb-3"
+                >
+                  <div className="img-container__modalTurnos">
+                    <Image src="https://static.vecteezy.com/system/resources/previews/005/520/216/non_2x/cartoon-drawing-of-a-veterinarian-vector.jpg"></Image>
+                  </div>
+                  <div className="img-container__modalTurnos">
+                    <Image src="https://img.freepik.com/vector-premium/diseno-logotipo-dibujos-animados-mascota-perro-lindo-estilo-diseno-plano_203040-109.jpg"></Image>
+                  </div>
+                </Col>
+
+                <Col lg={12} className="mt-3">
+                  <div className="d-flex justify-content-center gap-4">
+                    <Button variant="primary" type="submit">
+                      Guardar Turno
+                    </Button>
+                    <Button variant="danger">Cancelar</Button>
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+          </Form>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
