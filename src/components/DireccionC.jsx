@@ -32,16 +32,16 @@ const DireccionC = () => {
             </div>
             <div className="d-flex flex-column gap-1 mt-4 ms-4 mb-3">
               <div className="direccion d-flex align-items-baseline gap-2">
-                <i className="bi bi-geo-alt-fill fs-3"></i>
-                <p className="fs-4 m-0">Calle Falsa 123</p>
+                <i className="bi bi-geo-alt-fill fs-4"></i>
+                <p className="fs-5 m-0">Calle Falsa 123</p>
               </div>
               <div className="telefono d-flex align-items-baseline gap-2">
-                <i className="bi bi-telephone-fill fs-3"></i>
-                <p className="fs-4 m-0">555-123425</p>
+                <i className="bi bi-telephone-fill fs-4"></i>
+                <p className="fs-5 m-0">555-123425</p>
               </div>
               <div className="direccion d-flex align-items-baseline gap-2">
-                <i className="bi bi bi-clock-fill fs-3"></i>
-                <p className="fs-4 m-0">8:00 a 20:00</p>
+                <i className="bi bi bi-clock-fill fs-4"></i>
+                <p className="fs-5 m-0">8:00 a 20:00</p>
               </div>
             </div>
           </Col>

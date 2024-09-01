@@ -4,6 +4,7 @@ import AdministradorPage from "../pages/AdministradorPage";
 import Error404Page from "../pages/Error404Page";
 import { usePageTitle } from "../helpers/usePageTitle";
 import NavbarC from "../components/NavbarC";
+import FooterC from "../components/FooterC";
 
 const RoutesViews = () => {
   const location = useLocation();
@@ -16,7 +17,7 @@ const RoutesViews = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<Error404Page />} />
       </Routes>
-      {/* AQUI VA EL FOOTER */}
+      <FooterC />
     </>
   );
 };
