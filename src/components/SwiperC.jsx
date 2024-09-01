@@ -33,7 +33,7 @@ export const Swiper = (props) => {
         slideShadows: true,
       },
       spaceBetween: 120,
-      slidesPerView: 1,
+      slidesPerView: 2.5,
       centeredSlides: true,
       breakpoints: {
         0: {

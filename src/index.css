@@ -104,3 +104,49 @@ nav {
   font-weight: 400;
   font-style: normal;
 }
+
+.btn-1 {
+  align-items: center !important;
+  background-clip: padding-box !important;
+  background-color: var(--color-complementario-I) !important;
+  border: 1px solid transparent !important;
+  border-radius: 0.75rem !important;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0 !important;
+  box-sizing: border-box !important;
+  color: #fff !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica,
+    Arial, sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 600;
+  justify-content: center !important;
+  line-height: 1.25 !important;
+  margin: 0 !important;
+  min-height: 3rem !important;
+  padding: calc(0.875rem - 1px) calc(1.5rem - 1px) !important;
+  position: relative !important;
+  text-decoration: none !important;
+  transition: all 250ms !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  touch-action: manipulation !important;
+  vertical-align: baseline !important;
+  width: fit-content !important;
+}
+
+.btn-1:hover,
+.btn-1:focus {
+  background-color: var(--color-complementario-II) !important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px !important;
+}
+
+.btn-1:hover {
+  transform: translateY(-1px) !important;
+}
+
+.btn-1:active {
+  background-color: var(--color-complementario-I) !important;
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px !important;
+  transform: translateY(0) !important;
+}

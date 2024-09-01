@@ -7,19 +7,29 @@ const CardC = ({ cardID, image, title, body, buttonText }) => {
     <>
       <Card
         className={
-          cardID === "testimonials" ? "card--wrapper__testimonials" : undefined
+          cardID === "testimonials"
+            ? "card--wrapper__testimonials"
+            : cardID === "nuestrosPlanes"
+            ? "card--wrapper__nuestrosPlanes"
+            : ""
         }
       >
         <Card.Body
           className={
             cardID === "testimonials"
               ? "card--body-wrapper__testimonials"
-              : undefined
+              : cardID === "nuestrosPlanes"
+              ? "card--body-wrapper__nuestrosPlanes"
+              : ""
           }
         >
           <Container
             className={
-              cardID === "testimonials" ? "card--img__testimonials" : undefined
+              cardID === "testimonials"
+                ? "card--img__testimonials"
+                : cardID === "nuestrosPlanes"
+                ? "card--img__nuestrosPlanes"
+                : ""
             }
           >
             <Card.Img src={image} />
@@ -28,7 +38,9 @@ const CardC = ({ cardID, image, title, body, buttonText }) => {
             className={
               cardID === "testimonials"
                 ? "card--title__testimonials"
-                : undefined
+                : cardID === "nuestrosPlanes"
+                ? "card--title__nuestrosPlanes"
+                : ""
             }
           >
             {title}
@@ -38,7 +50,9 @@ const CardC = ({ cardID, image, title, body, buttonText }) => {
               className={
                 cardID === "testimonials"
                   ? "card--body__testimonials"
-                  : undefined
+                  : cardID === "nuestrosPlanes"
+                  ? "card--description__nuestrosPlanes"
+                  : ""
               }
             >
               {cardID === "testimonials" && (
@@ -54,7 +68,13 @@ const CardC = ({ cardID, image, title, body, buttonText }) => {
               </div>
             )}
           </Container>
-          {cardID !== "testimonials" && <Button>{buttonText}</Button>}
+          <Container className="d-flex justify-content-center">
+            {cardID !== "testimonials" && (
+              <Button className="btn-1 card--btn__nuestrosPlanes">
+                {buttonText}
+              </Button>
+            )}
+          </Container>
         </Card.Body>
       </Card>
     </>
