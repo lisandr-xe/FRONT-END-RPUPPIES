@@ -30,65 +30,89 @@ nav {
   color: var(--color-blanco);
 }
 
-.bg-color-fondo {
-  background-color: var(--color-fondo);
+.bgColorFondo{
+    background-color: var(--color-fondo) !important;
 }
 
-.bg-color-principal {
-  background-color: var(--color-1);
+.bgColorPrincipal {
+    background-color: var(--color-1) !important;
 }
 
-.bg-color-opuesto {
-  background-color: var(--color-complementario-I);
+.bgColorOpuesto {
+    background-color: var(--color-complementario-I) !important;
 }
 
-.btn-personalized-1 {
-  background-color: var(--color-complementario-I);
-  color: var(--color-blanco);
+.btnPersonalized1 {
+    background-color: var(--color-complementario-I) !important;
+    color: var(--color-blanco) !important;
 }
 
-.btn-personalized-1:hover {
-  background-color: var(--color-complementario-II);
-  color: var(--color-blanco);
+.btnPersonalized1:hover {
+    background-color: var(--color-complementario-II) !important;
+    color: var(--color-blanco) !important;
 }
 
-.btn-personalized-2 {
-  background-color: var(--color-5);
-  color: var(--color-blanco);
+.btnPersonalized1:disabled {
+    background-color: #d3d3d3 !important;
+    color: #a9a9a9 !important;
+    cursor: not-allowed !important;
 }
 
-.btn-personalized-2:hover {
-  background-color: var(--color-6);
-  color: var(--color-blanco);
+.btnPersonalized2 {
+    background-color: var(--color-5) !important;
+    color: var(--color-blanco) !important;
 }
 
-.btn-personalized-3 {
-  background-color: var(--color-7);
-  color: var(--color-blanco);
+.btnPersonalized2:hover {
+    background-color: var(--color-6) !important;
+    color: var(--color-blanco) !important;
 }
 
-.btn-personalized-3:hover {
-  background-color: var(--color-8);
-  color: var(--color-blanco);
+.btnPersonalized2:disabled {
+    background-color: #d3d3d3 !important;
+    color: #a9a9a9 !important;
+    cursor: not-allowed !important;
 }
 
-.btn-personalized-4 {
-  background-color: var(--color-1);
-  color: var(--color-blanco);
+.btnPersonalized3 {
+    background-color: var(--color-7) !important;
+    color: var(--color-blanco) !important;
 }
 
-.btn-personalized-4:hover {
-  background-color: var(--color-2);
-  color: var(--color-blanco);
+.btnPersonalized3:hover {
+    background-color: var(--color-8) !important;
+    color: var(--color-blanco) !important;
 }
 
-.bg-input {
-  border: 1.8px solid var(--color-2);
+.btnPersonalized3:disabled {
+    background-color: #d3d3d3 !important;
+    color: #a9a9a9 !important;
+    cursor: not-allowed !important;
 }
 
-.bg-input:focus {
-  border: 2px solid var(--color-2);
-  box-shadow: 0 0 0 0.2rem var(--color-2);
+.btnPersonalized4 {
+    background-color: var(--color-1) !important;
+    color: var(--color-blanco) !important;
+}
+
+.btnPersonalized4:hover {
+    background-color: var(--color-2) !important;
+    color: var(--color-blanco) !important;
+}
+
+.btnPersonalized4:disabled {
+    background-color: #d3d3d3 !important;
+    color: #a9a9a9 !important;
+    cursor: not-allowed !important;
+}
+
+.bgInput {
+    border: 1.8px solid var(--color-2) !important;
+}
+
+.bgInput:focus {
+    border: 2px solid var(--color-2) !important;
+    box-shadow: 0 0 0 0.2rem var(--color-2) !important;
 }
 
 .text-poppins {
