@@ -19,14 +19,14 @@ const FooterC = () => {
 
   return (
     <>
-      <Container fluid className="pt-4 bg-color-fondo">
+      <Container fluid className="pt-4 bg-color-principal">
         <Row>
           <Col
             xs={12}
             md={12}
             lg={3}
             xl={2}
-            className="d-flex justify-content-end justify-content-md-center align-items-center p-0"
+            className="d-flex justify-content-end justify-content-sm-center align-items-center p-0"
           >
             <Image src={imgLogo} className="logo--img__footer" />
           </Col>
@@ -38,36 +38,42 @@ const FooterC = () => {
             className="ps-5 mb-4 p-0 d-flex gap-2"
           >
             <div>
-              <h3 className="ms-3">Servicios</h3>
+              <h3 className="ms-3 text-white">Servicios</h3>
               <ul className="list-group">
                 <li className="list-group-item border-0 bg-transparent">
-                  <Link className="nav-link">Castración</Link>
+                  <Link className="nav-link text-white">Castración</Link>
                 </li>
                 <li className="list-group-item border-0 bg-transparent">
-                  <Link className="nav-link">Higiene y cuidados</Link>
+                  <Link className="nav-link text-white">
+                    Higiene y cuidados
+                  </Link>
                 </li>
                 <li className="list-group-item border-0 bg-transparent">
-                  <Link className="nav-link">Algo</Link>
+                  <Link className="nav-link text-white">Algo</Link>
                 </li>
                 <li className="list-group-item border-0 bg-transparent">
-                  <Link className="nav-link">Algo más</Link>
+                  <Link className="nav-link text-white">Algo más</Link>
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="ms-3">Información</h3>
+              <h3 className="ms-3 text-white">Información</h3>
               <ul className="list-group">
                 <li className="list-group-item border-0 bg-transparent">
-                  <Link className="nav-link">Acerca de nosotros</Link>
+                  <Link className="nav-link text-white">
+                    Acerca de nosotros
+                  </Link>
                 </li>
                 <li className="list-group-item border-0 bg-transparent">
-                  <Link className="nav-link">Trabaja con nosotros</Link>
+                  <Link className="nav-link text-white">
+                    Trabaja con nosotros
+                  </Link>
                 </li>
                 <li className="list-group-item border-0 bg-transparent">
-                  <Link className="nav-link">Adopciones</Link>
+                  <Link className="nav-link text-white">Adopciones</Link>
                 </li>
                 <li className="list-group-item border-0 bg-transparent">
-                  <Link className="nav-link">Blog</Link>
+                  <Link className="nav-link text-white">Blog</Link>
                 </li>
               </ul>
             </div>
@@ -91,16 +97,16 @@ const FooterC = () => {
             <div>
               <div className="d-flex flex-column gap-1 mt-4 mb-3">
                 <div className="direccion d-flex align-items-baseline gap-2">
-                  <i className="bi bi-geo-alt-fill fs-4"></i>
-                  <p className="fs-5 m-0">Calle Falsa 123</p>
+                  <i className="bi bi-geo-alt-fill fs-4 text-white"></i>
+                  <p className="fs-5 m-0 text-white">Calle Falsa 123</p>
                 </div>
                 <div className="telefono d-flex align-items-baseline gap-2">
-                  <i className="bi bi-telephone-fill fs-4"></i>
-                  <p className="fs-5 m-0">555-123425</p>
+                  <i className="bi bi-telephone-fill fs-4 text-white"></i>
+                  <p className="fs-5 m-0 text-white">555-123425</p>
                 </div>
                 <div className="direccion d-flex align-items-baseline gap-2">
-                  <i className="bi bi bi-clock-fill fs-4"></i>
-                  <p className="fs-5 m-0">8:00 a 20:00</p>
+                  <i className="bi bi bi-clock-fill fs-4 text-white"></i>
+                  <p className="fs-5 m-0 text-white">8:00 a 20:00</p>
                 </div>
                 <div className="mt-3">
                   <button className="btn-1" onClick={handleShow}>
@@ -143,10 +149,10 @@ const FooterC = () => {
       </Container>
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header closeButton className="bg-color-principal text-white">
           <Modal.Title>Editar/Agregar Turno</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="bg-color-fondo">
           <Form>
             <Container>
               <Row className="align-items-center">

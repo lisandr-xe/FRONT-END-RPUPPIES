@@ -65,12 +65,12 @@ const TestimonialsC = () => {
 
   return (
     <>
-      <h2 className="testimonials--title">Clientes felices</h2>
-      <h3 className="testimonials--subtitle">
-        Nuestros clientes nos devuelven todo el cariño y amor que le brindamos a
-        sus mascotas
-      </h3>
       <Container className="testimonials--container mb-5">
+        <h2 className="testimonials--title">Clientes felices</h2>
+        <h3 className="testimonials--subtitle">
+          Nuestros clientes nos devuelven todo el cariño y amor que le brindamos
+          a sus mascotas
+        </h3>
         <Swiper
           modules={[Navigation, Pagination, EffectCoverflow]}
           navigation={{
