@@ -22,10 +22,31 @@
   --fuente-terciaria: "Allura", sans-serif;
 }
 
-nav {
-  z-index: 1000;
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
+#root {
+  height: 100vh;
+}
+
+.main-container {
+  height: calc(100% - 372px - 122px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+nav {
+  z-index: 1000;
+  height: 122px;
+}
+
+footer {
+  height: 372px;
+}
 .text-white {
   color: var(--color-blanco);
 }
