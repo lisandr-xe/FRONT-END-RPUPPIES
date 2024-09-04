@@ -5,10 +5,26 @@ import Image from "react-bootstrap/Image";
 import imgLogo from "../assets/img/rolling_puppies_logo.png";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ModalIniciarSesion from "./ModalIniciarSesion";
+import ModalRegistrarse from "./ModalRegistrarse";
+import ModalEditarPerfil from "./ModalEditarPerfil";
 
 const NavbarC = () => {
   const [userRole, setUserRole] = useState();
   const [userLogged, setUserLogged] = useState();
+
+  const [showModalIniciarSesion, setShowModalIniciarSesion] = useState(false);
+
+  const handleOpenModalIniciarSesion = () => setShowModalIniciarSesion(true);
+  const handleCloseModalIniciarSesion = () => setShowModalIniciarSesion(false);
+
+  const [showModalRegistrarse, setShowModalRegistrarse] = useState(false);
+  const handleOpenModalRegistrarse = () => setShowModalRegistrarse(true);
+  const handleCloseModalRegistrarse = () => setShowModalRegistrarse(false);
+
+  const [showModalEditarPerfil, setShowModalEditarPerfil] = useState(false);
+  const handleOpenModalEditarPerfil = () => setShowModalEditarPerfil(true);
+  const handleCloseModalEditarPerfil = () => setShowModalEditarPerfil(false);
 
   //###################### PARA PROBAR - ELIMINAR CUANDO AGREGUEMOS TODA LA LOGICA ##########################
   useEffect(() => {
@@ -19,7 +35,7 @@ const NavbarC = () => {
 
   return (
     <>
-      <Navbar expand="lg" className="bg-color-principal text-poppins p-0">
+      <Navbar expand="lg" className="sticky-top bgColorPrincipal text-poppins p-0">
         <Container fluid>
           <Navbar.Brand className="me-5" href="#home">
             <Image src={imgLogo} width={130} />
@@ -76,8 +92,12 @@ const NavbarC = () => {
               ) : (
                 <>
                   <div className="d-flex gap-2">
-                    <button className="btn-1">Iniciar Sesión</button>
-                    <button className="btn-1">Registrarse</button>
+                    <button className="btn-1" onClick={handleOpenModalIniciarSesion}>Iniciar Sesión</button>
+                    <ModalIniciarSesion show={showModalIniciarSesion} handleClose={handleCloseModalIniciarSesion}/>
+                    <button className="btn-1" onClick={handleOpenModalRegistrarse}>Registrarse</button>
+                    <ModalRegistrarse show={showModalRegistrarse} handleClose={handleCloseModalRegistrarse}/>
+                    <button className="btn-1" onClick={handleOpenModalEditarPerfil}>Editar Perfil</button>
+                    <ModalEditarPerfil show={showModalEditarPerfil} handleClose={handleCloseModalEditarPerfil} />
                   </div>
                 </>
               )}

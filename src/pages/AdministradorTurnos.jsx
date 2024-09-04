@@ -79,15 +79,15 @@ const AdministradorTurnos = () => {
       ];
 
     return (
-        <>
-        <div>
+      <main className='flex-grow-1'>
+          <div>
             <BannerAdminView/>
-        </div>
-        <div className="container text-align fontPage">
-         <h1 className="text-center my-4">Tabla de Turnos</h1>
-            <TableTurnos turnos={turnos} />
-        </div>
-        </>
+          </div>
+          <div className="container text-align fontPage">
+          <h1 className="text-center my-4">Tabla de Turnos</h1>
+              <TableTurnos turnos={turnos} />
+          </div>
+      </main>
     );
 };
 

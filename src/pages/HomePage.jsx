@@ -1,22 +1,22 @@
 import BannerC from "../components/BannerC";
+import Bienvenidad from "../components/Bienvenidad";
 import DireccionC from "../components/DireccionC";
-import NuestrosPlanesC from "../components/NuestrosPlanesC";
-import TestimonialsC from "../components/TestimonialsC";
 import NuestrasMarcas from "../components/NuestrasMarcas";
 import NuestrosProfesionales from "../components/nuestrosProfesionales";
 import NuestrosServicios from "../components/NuestrosServicios";
+import PubliPeluqueria from "../components/PubliPeluqueria";
 
 const HomePage = () => {
   return (
-    <>
-      <BannerC />
-      <TestimonialsC />
-      <NuestrosServicios/>
-      <NuestrosPlanesC />
+    <main className='flex-grow-1'>
+      <BannerC/>
+      <Bienvenidad/>
       <NuestrasMarcas/>
+      <NuestrosServicios/>
+      <PubliPeluqueria/>
+      <DireccionC/>
       <NuestrosProfesionales/>
-      <DireccionC />
-    </>
+    </main>
   );
 };
 
