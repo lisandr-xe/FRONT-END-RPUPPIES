@@ -5,6 +5,7 @@ import Error404Page from "../pages/Error404Page";
 import { usePageTitle } from "../helpers/usePageTitle";
 import NavbarC from "../components/NavbarC";
 import FooterC from "../components/FooterC";
+import MisMascotasPage from "../pages/MisMascotasPage";
 import RecuperarContrasenia from "../pages/RecuperarContrasenia";
 
 const RoutesViews = () => {
@@ -14,6 +15,7 @@ const RoutesViews = () => {
     <>
       <NavbarC />
       <Routes>
+        <Route path="/mismascotas" element={<MisMascotasPage />} />
         <Route path="/administrador" element={<AdministradorPage />} />
         <Route
           path="/recuperar-contraseña"
