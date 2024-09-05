@@ -19,7 +19,7 @@ const NavbarC = () => {
 
   return (
     <>
-      <Navbar expand="lg" className="bg-color-principal text-poppins p-0">
+      <Navbar expand="lg" className="bgColorPrincipal text-poppins p-0">
         <Container fluid>
           <Navbar.Brand className="me-5" href="#home">
             <Image src={imgLogo} width={130} />

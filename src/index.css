@@ -26,6 +26,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-x: hidden;
 }
 
 #root {
@@ -51,89 +52,89 @@ footer {
   color: var(--color-blanco);
 }
 
-.bgColorFondo{
-    background-color: var(--color-fondo) !important;
+.bgColorFondo {
+  background-color: var(--color-fondo) !important;
 }
 
 .bgColorPrincipal {
-    background-color: var(--color-1) !important;
+  background-color: var(--color-1) !important;
 }
 
 .bgColorOpuesto {
-    background-color: var(--color-complementario-I) !important;
+  background-color: var(--color-complementario-I) !important;
 }
 
 .btnPersonalized1 {
-    background-color: var(--color-complementario-I) !important;
-    color: var(--color-blanco) !important;
+  background-color: var(--color-complementario-I) !important;
+  color: var(--color-blanco) !important;
 }
 
 .btnPersonalized1:hover {
-    background-color: var(--color-complementario-II) !important;
-    color: var(--color-blanco) !important;
+  background-color: var(--color-complementario-II) !important;
+  color: var(--color-blanco) !important;
 }
 
 .btnPersonalized1:disabled {
-    background-color: #d3d3d3 !important;
-    color: #a9a9a9 !important;
-    cursor: not-allowed !important;
+  background-color: #d3d3d3 !important;
+  color: #a9a9a9 !important;
+  cursor: not-allowed !important;
 }
 
 .btnPersonalized2 {
-    background-color: var(--color-5) !important;
-    color: var(--color-blanco) !important;
+  background-color: var(--color-5) !important;
+  color: var(--color-blanco) !important;
 }
 
 .btnPersonalized2:hover {
-    background-color: var(--color-6) !important;
-    color: var(--color-blanco) !important;
+  background-color: var(--color-6) !important;
+  color: var(--color-blanco) !important;
 }
 
 .btnPersonalized2:disabled {
-    background-color: #d3d3d3 !important;
-    color: #a9a9a9 !important;
-    cursor: not-allowed !important;
+  background-color: #d3d3d3 !important;
+  color: #a9a9a9 !important;
+  cursor: not-allowed !important;
 }
 
 .btnPersonalized3 {
-    background-color: var(--color-7) !important;
-    color: var(--color-blanco) !important;
+  background-color: var(--color-7) !important;
+  color: var(--color-blanco) !important;
 }
 
 .btnPersonalized3:hover {
-    background-color: var(--color-8) !important;
-    color: var(--color-blanco) !important;
+  background-color: var(--color-8) !important;
+  color: var(--color-blanco) !important;
 }
 
 .btnPersonalized3:disabled {
-    background-color: #d3d3d3 !important;
-    color: #a9a9a9 !important;
-    cursor: not-allowed !important;
+  background-color: #d3d3d3 !important;
+  color: #a9a9a9 !important;
+  cursor: not-allowed !important;
 }
 
 .btnPersonalized4 {
-    background-color: var(--color-1) !important;
-    color: var(--color-blanco) !important;
+  background-color: var(--color-1) !important;
+  color: var(--color-blanco) !important;
 }
 
 .btnPersonalized4:hover {
-    background-color: var(--color-2) !important;
-    color: var(--color-blanco) !important;
+  background-color: var(--color-2) !important;
+  color: var(--color-blanco) !important;
 }
 
 .btnPersonalized4:disabled {
-    background-color: #d3d3d3 !important;
-    color: #a9a9a9 !important;
-    cursor: not-allowed !important;
+  background-color: #d3d3d3 !important;
+  color: #a9a9a9 !important;
+  cursor: not-allowed !important;
 }
 
 .bgInput {
-    border: 1.8px solid var(--color-2) !important;
+  border: 1.8px solid var(--color-2) !important;
 }
 
 .bgInput:focus {
-    border: 2px solid var(--color-2) !important;
-    box-shadow: 0 0 0 0.2rem var(--color-2) !important;
+  border: 2px solid var(--color-2) !important;
+  box-shadow: 0 0 0 0.2rem var(--color-2) !important;
 }
 
 .text-poppins {

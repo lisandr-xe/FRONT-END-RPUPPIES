@@ -24,7 +24,7 @@ const RoutesViews = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<Error404Page />} />
       </Routes>
-      <FooterC />
+      {location.pathname !== "/" && <FooterC />}
     </>
   );
 };
