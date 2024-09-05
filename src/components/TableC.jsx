@@ -20,40 +20,45 @@ const TableC = ({ tableID, columns, tdata }) => {
   }, []);
 
   return (
-    <>
-      <Container className="table-responsive">
-        <DataTable className="display nowrap fontPage">
-          <thead>
-            <tr>
-              {columns.map((columnName) => (
-                <th key={columnName} className="text-center">
-                  {columnName}
-                </th>
+    <Container>
+      <DataTable
+        className="display nowrap fontPage"
+        options={{
+          responsive: true,
+        }}
+      >
+        <thead>
+          <tr>
+            {columns.map((columnName) => (
+              <th key={columnName} className="text-center">
+                {columnName}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        {tableID === "usuarios" ? (
+          <>
+            <tbody>
+              {tableData.map((user) => (
+                <tr key={user._id}>
+                  <td className="text-center">{user._id}</td>
+                  <td className="text-center">{user.nombre}</td>
+                  <td className="text-center">{user.apellido}</td>
+                  <td className="text-center">{user.email}</td>
+                  <td className="text-center">{user.telefono}</td>
+                  <td className="text-center">{user.rol}</td>
+                  <td className="text-center d-flex gap-2 ">
+                    <Button className="btnPersonalized3">Editar</Button>
+                    <Button className="btn btn-warning">Deshabilitar</Button>
+                    <Button className="btn btn-danger">Eliminar</Button>
+                  </td>
+                </tr>
               ))}
-            </tr>
-          </thead>
-          {tableID === "usuarios" ? (
-            <>
-              <tbody>
-                {tableData.map((user) => (
-                  <tr key={user._id}>
-                    <td className="text-center">{user._id}</td>
-                    <td className="text-center">{user.nombre}</td>
-                    <td className="text-center">{user.apellido}</td>
-                    <td className="text-center">{user.email}</td>
-                    <td className="text-center">{user.telefono}</td>
-                    <td className="text-center">{user.rol}</td>
-                    <td className="text-center ">
-                      <Button className="btnPersonalized3">Editar</Button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </>
-          ) : null}
-        </DataTable>
-      </Container>
-    </>
+            </tbody>
+          </>
+        ) : null}
+      </DataTable>
+    </Container>
   );
 };
 
