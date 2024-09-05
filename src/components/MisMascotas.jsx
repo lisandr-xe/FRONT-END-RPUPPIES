@@ -78,6 +78,7 @@ const CardFelino = () => {
             cancelButtonText: "Cancelar"
         }).then((result) => {
             if (result.isConfirmed) {
+                /* AXIOS */
                 Swal.fire({
                     icon: "success",
                     title: "¡Exito!",
