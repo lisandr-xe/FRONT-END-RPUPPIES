@@ -34,6 +34,7 @@ const AdministradorPage = () => {
     <main className="flex-grow-1">
       <BannerAdminView />
       <TableC
+        tableID={"usuarios"}
         columns={[
           "ID",
           "nombre",
