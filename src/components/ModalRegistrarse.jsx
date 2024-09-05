@@ -80,22 +80,6 @@ function ModalRegistrarse({ show, handleClose }) {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label htmlFor="fechaNacimientoRegistro" className="fw-bolder">
-                    Fecha de Nacimiento
-                    </Form.Label>
-                    <Form.Control
-                    type="date"
-                    id="fechaNacimientoRegistro"
-                    placeholder="Ingrese su Fecha de Nacimiento"
-                    min="1900-01-01"
-                    name="Fecha de nacimiento"
-                    required
-                    className={styleGeneral.bgInput}
-                    />
-                    <div id="fechaNacimientoErrorRegistro"></div>
-                </Form.Group>
-
-                <Form.Group className="mb-3">
                     <Form.Label htmlFor="passwordRegistro" className="fw-bolder">
                     Contraseña
                     </Form.Label>
