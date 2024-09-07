@@ -3,7 +3,7 @@ import TableC from "../components/TableC";
 import axios from "axios";
 
 const AdministradorUsuarios = () => {
-  const [usuarios, setUsuarios] = useState([]);
+  const [usuarios, setUsuarios] = useState();
 
   const client = axios.create({
     baseURL: "http://localhost:3001/api/usuarios",
@@ -14,6 +14,7 @@ const AdministradorUsuarios = () => {
       .get("/")
       .then((res) => {
         setUsuarios(res.data);
+        console.log(res.data);
       })
       .catch((error) => {
         console.log(error);

@@ -1,64 +1,187 @@
-import DataTable from "datatables.net-react";
-import DT from "datatables.net-dt";
-import { Container, Button } from "react-bootstrap";
 import { useEffect, useRef, useState } from "react";
-import "datatables.net-dt/css/dataTables.dataTables.min.css";
-import "datatables.net-responsive-dt/css/responsive.dataTables.min.css";
-import "datatables.net-responsive";
-import "../index.css";
-DataTable.use(DT);
+import { Button, Container, Form } from "react-bootstrap";
+import InputGroup from "react-bootstrap/InputGroup";
+import Swal from "sweetalert2";
+import axios from "axios";
+import DataTable from "react-data-table-component";
+import { width } from "@fortawesome/free-solid-svg-icons/fa0";
 
-const TableC = ({ tableID, columns, tdata }) => {
+const TableC = ({ tableID }) => {
   const [tableData, setTableData] = useState([]);
+  const searchParamBar = useRef(null);
 
-  const getTableData = () => {
-    setTableData(tdata);
+  const client = axios.create({
+    baseURL: "http://localhost:3001/api/usuarios",
+  });
+
+  const getUsers = async () => {
+    await client
+      .get("/")
+      .then((res) => {
+        setTableData(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
-    getTableData();
-  }, []);
+    !tableData.length && getUsers();
+  }, [tableData]);
+
+  const deshabilitarUsuario = async (userID, is_bloqueado) => {
+    Swal.fire({
+      icon: "question",
+      title: `Estas seguro que deseas ${
+        is_bloqueado ? "habilitar" : "deshabilitar"
+      } al usuario?`,
+      showCancelButton: true,
+      confirmButtonText: `${is_bloqueado ? "Habilitar" : "Deshabilitar"}`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          `${
+            is_bloqueado
+              ? "El usuario fue habilitado"
+              : "El usuario fue dehabilitado"
+          }`,
+          "",
+          "success"
+        );
+        client
+          .put(`/${userID}`, {
+            bloqueado: !is_bloqueado,
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    });
+  };
+
+  const eliminarUsuario = async (userID) => {
+    Swal.fire({
+      icon: "question",
+      title: `Estas seguro que deseas eliminar a este usuario?`,
+      showCancelButton: true,
+      confirmButtonText: "Eliminar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("El usuario fue eliminado", "", "success");
+        client.delete(`/${userID}`).catch((error) => {
+          console.log(error);
+        });
+      }
+    });
+  };
+
+  const columns = [
+    {
+      name: "ID",
+      value: "_id",
+      selector: (row) => row._id,
+    },
+    {
+      name: "Nombre",
+      value: "nombre",
+      selector: (row) => `${row.nombre} ${row.apellido}`,
+    },
+    {
+      name: "Email",
+      value: "email",
+      selector: (row) => row.email,
+    },
+    {
+      name: "Teléfono",
+      value: "telefono",
+      selector: (row) => row.telefono,
+    },
+    {
+      name: "Rol",
+      value: "rol",
+      selector: (row) => row.rol,
+    },
+    {
+      name: "Opciones",
+      value: "options",
+      selector: (row) => (
+        <>
+          <div className="d-flex gap-2">
+            <Button className="btnPersonalized3">Editar</Button>
+            <Button
+              className="btn btn-warning"
+              onClick={() => {
+                deshabilitarUsuario(row._id, row.bloqueado);
+              }}
+            >
+              {row.bloqueado ? "Habilitar" : "Deshabilitar"}
+            </Button>
+            <Button
+              className="btn btn-danger"
+              onClick={() => {
+                eliminarUsuario(row._id);
+              }}
+            >
+              Eliminar
+            </Button>
+          </div>
+        </>
+      ),
+      grow: 2,
+    },
+  ];
+
+  const customSearch = (obj, filter, filterValue) => {
+    const newObj = [];
+    Object.keys(obj).forEach((key) => {
+      obj[key][filter].toLowerCase().indexOf(filterValue.toLowerCase()) >= 0 &&
+        newObj.push(obj[key]);
+    });
+    return newObj;
+  };
+
+  const handleSearch = (e) => {
+    let newTableData = [];
+    if (e.target.value === "") {
+      getUsers();
+    }
+    const searchParam = searchParamBar.current.value;
+    newTableData = customSearch(tableData, searchParam, e.target.value);
+    setTableData(newTableData);
+  };
 
   return (
-    <Container>
-      <DataTable
-        className="display nowrap fontPage"
-        options={{
-          responsive: true,
-        }}
-      >
-        <thead>
-          <tr>
-            {columns.map((columnName) => (
-              <th key={columnName} className="text-center">
-                {columnName}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        {tableID === "usuarios" ? (
-          <>
-            <tbody>
-              {tableData.map((user) => (
-                <tr key={user._id}>
-                  <td className="text-center">{user._id}</td>
-                  <td className="text-center">{user.nombre}</td>
-                  <td className="text-center">{user.apellido}</td>
-                  <td className="text-center">{user.email}</td>
-                  <td className="text-center">{user.telefono}</td>
-                  <td className="text-center">{user.rol}</td>
-                  <td className="text-center d-flex gap-2 ">
-                    <Button className="btnPersonalized3">Editar</Button>
-                    <Button className="btn btn-warning">Deshabilitar</Button>
-                    <Button className="btn btn-danger">Eliminar</Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </>
-        ) : null}
-      </DataTable>
-    </Container>
+    <>
+      <Container className="m-auto">
+        <Form className="w-50 ms-auto">
+          <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
+            Buscar
+          </Form.Label>
+          <InputGroup className="mb-2">
+            <InputGroup.Text>
+              <i className="bi bi-search"></i>
+            </InputGroup.Text>
+            <Form.Control id="inlineFormInputGroup" onChange={handleSearch} />
+            <Form.Select
+              style={{ maxWidth: "200px" }}
+              aria-label="Default select example"
+              ref={searchParamBar}
+            >
+              <option value={"all"}>Todos los campos</option>
+              {columns.map(
+                (column) =>
+                  column.name !== "Opciones" && (
+                    <option key={column.name} value={column.value}>
+                      {column.name}
+                    </option>
+                  )
+              )}
+            </Form.Select>
+          </InputGroup>
+        </Form>
+        <DataTable columns={columns} data={tableData} pagination />
+      </Container>
+    </>
   );
 };
 

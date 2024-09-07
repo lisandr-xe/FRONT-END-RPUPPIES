@@ -33,19 +33,6 @@ const AdministradorPage = () => {
   return (
     <main className="flex-grow-1">
       <BannerAdminView />
-      <TableC
-        tableID={"usuarios"}
-        columns={[
-          "ID",
-          "nombre",
-          "apellido",
-          "email",
-          "telefono",
-          "rol",
-          "Opciones",
-        ]}
-        users={userData}
-      />
     </main>
   );
 };
