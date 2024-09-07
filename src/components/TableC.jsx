@@ -27,7 +27,7 @@ const TableC = ({ tableID }) => {
 
   useEffect(() => {
     !tableData.length && getUsers();
-  }, [tableData]);
+  }, []);
 
   const deshabilitarUsuario = async (userID, is_bloqueado) => {
     Swal.fire({
@@ -133,11 +133,30 @@ const TableC = ({ tableID }) => {
 
   const customSearch = (obj, filter, filterValue) => {
     const newObj = [];
-    Object.keys(obj).forEach((key) => {
-      obj[key][filter].toLowerCase().indexOf(filterValue.toLowerCase()) >= 0 &&
-        newObj.push(obj[key]);
-    });
-    return newObj;
+
+    if (Array.isArray(filter)) {
+      Object.keys(obj).forEach((key) => {
+        var is_added = false;
+        filter.forEach((filterKey) => {
+          if (
+            !is_added &&
+            obj[key][filterKey]
+              .toLowerCase()
+              .indexOf(filterValue.toLowerCase()) >= 0
+          ) {
+            newObj.push(obj[key]);
+            is_added = true;
+          }
+        });
+      });
+      return newObj;
+    } else {
+      Object.keys(obj).forEach((key) => {
+        obj[key][filter].toLowerCase().indexOf(filterValue.toLowerCase()) >=
+          0 && newObj.push(obj[key]);
+      });
+      return newObj;
+    }
   };
 
   const handleSearch = (e) => {
@@ -146,8 +165,18 @@ const TableC = ({ tableID }) => {
       getUsers();
     }
     const searchParam = searchParamBar.current.value;
-    newTableData = customSearch(tableData, searchParam, e.target.value);
-    setTableData(newTableData);
+
+    if (searchParam === "all") {
+      newTableData = customSearch(
+        tableData,
+        ["_id", "nombre", "email", "telefono", "rol"],
+        e.target.value
+      );
+      setTableData(newTableData);
+    } else {
+      newTableData = customSearch(tableData, searchParam, e.target.value);
+      setTableData(newTableData);
+    }
   };
 
   return (
