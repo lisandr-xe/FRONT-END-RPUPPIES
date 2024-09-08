@@ -16,7 +16,6 @@ const TableC = ({ tableID }) => {
   const searchParamBar = useRef(null);
   const [pending, setPending] = useState(true);
   const [showEditarPerfil, setShowEditarPerfil] = useState(false);
-  const [modalEditarPerfilData, setModalEditarPerfilData] = useState({});
   const [formData, setFormData] = useState([]);
   const navigate = useNavigate();
 
@@ -111,38 +110,6 @@ const TableC = ({ tableID }) => {
   useEffect(() => {
     reset(formData);
   }, [showEditarPerfil]);
-
-  // const handleClick = async (e) => {
-  //   e.preventDefault();
-
-  //   console.log(modalEditarPerfilData, modalEditarPerfilData._id);
-
-  //   try {
-  //     const response = await client.put(
-  //       `/${modalEditarPerfilData._id}`,
-  //       modalEditarPerfilData
-  //     );
-  //     if (response.status === 200) {
-  //       Swal.fire({
-  //         title: "Los datos se actualizaron con exito",
-  //         text: "Los datos del usuario se actualizaron correctamente",
-  //         icon: "success",
-  //       });
-  //     } else {
-  //       Swal.fire({
-  //         title: "Hubo un problema",
-  //         text: `Error ${response.status}: No se pudieron actualizar los datos del usuario`,
-  //         icon: "error",
-  //       });
-  //     }
-  //   } catch (error) {
-  //     Swal.fire({
-  //       title: "Hubo un problema",
-  //       text: `${error}`,
-  //       icon: "error",
-  //     });
-  //   }
-  // };
 
   const getUsers = async () => {
     try {
@@ -401,7 +368,6 @@ const TableC = ({ tableID }) => {
                   minLength="3"
                   maxLength="25"
                   name="apellido"
-                  value={modalEditarPerfilData.apellido}
                   required
                   className="bgInput"
                   {...register("apellido")}
@@ -422,7 +388,6 @@ const TableC = ({ tableID }) => {
                 minLength="8"
                 maxLength="20"
                 name="email"
-                value={modalEditarPerfilData.email}
                 required
                 className="bgInput"
                 aria-describedby="emailHelp"
@@ -443,7 +408,6 @@ const TableC = ({ tableID }) => {
                 // maxLength="10"
                 // pattern="\d{10}"
                 name="telefono"
-                value={modalEditarPerfilData.telefono}
                 required
                 className="bgInput"
                 {...register("telefono")}
@@ -458,7 +422,6 @@ const TableC = ({ tableID }) => {
               <Form.Select
                 aria-label="Default select example"
                 className="bgInput"
-                value={modalEditarPerfilData.rol}
                 name="rol"
                 {...register("rol")}
               >
