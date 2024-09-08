@@ -11,13 +11,21 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 
 const TableC = ({ tableID }) => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [tableData, setTableData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const searchParamBar = useRef(null);
   const [pending, setPending] = useState(true);
   const [showEditarPerfil, setShowEditarPerfil] = useState(false);
   const [formData, setFormData] = useState([]);
+  const [showFullName, setShowFullName] = useState();
   const navigate = useNavigate();
+
+  useState(() => {
+    if (windowWidth < 426) {
+      setShowFullName(true);
+    }
+  }, [windowWidth]);
 
   //AXIOS
 
@@ -124,6 +132,12 @@ const TableC = ({ tableID }) => {
 
   useEffect(() => {
     getUsers();
+
+    if (window.innerWidth < 426) {
+      setShowFullName(true);
+    } else {
+      setShowFullName(false);
+    }
   }, []);
 
   //FUNCIONES CRUD USUARIO
@@ -132,31 +146,42 @@ const TableC = ({ tableID }) => {
       name: "ID",
       value: "_id",
       selector: (row) => row._id,
+      hide: "md",
     },
     {
       name: "Nombre",
       value: "nombre",
       selector: (row) => row.nombre,
+      omit: showFullName,
     },
     {
       name: "Apellido",
       value: "apellido",
       selector: (row) => row.apellido,
+      omit: showFullName,
+    },
+    {
+      name: "Nombre Completo",
+      selector: (row) => row.nombre + " " + row.apellido,
+      omit: !showFullName,
     },
     {
       name: "Email",
       value: "email",
       selector: (row) => row.email,
+      hide: "sm",
     },
     {
       name: "Teléfono",
       value: "telefono",
       selector: (row) => row.telefono,
+      hide: "md",
     },
     {
       name: "Rol",
       value: "rol",
       selector: (row) => row.rol,
+      hide: "sm",
     },
     {
       name: "Opciones",
@@ -439,8 +464,9 @@ const TableC = ({ tableID }) => {
                 id="botonGuardarCambios"
                 className="btnPersonalized2 mx-1 fw-bold"
                 aria-label="Guardar cambios"
+                disabled={isSubmitting}
               >
-                Guardar cambios
+                {isSubmitting ? "Guardando cambios..." : "Guardar cambios"}
               </Button>
               <Button
                 type="button"
