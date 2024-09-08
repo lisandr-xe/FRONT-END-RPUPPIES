@@ -359,7 +359,7 @@ const TableC = ({ tableID }) => {
                 placeholder="Ingresa tu teléfono"
                 maxLength="10"
                 pattern="\d{10}"
-                name="Teléfono"
+                name="telefono"
                 value={modalEditarPerfilData.telefono}
                 onChange={handleChange}
                 required
@@ -386,7 +386,7 @@ const TableC = ({ tableID }) => {
               <Button
                 type="submit"
                 id="botonGuardarCambios"
-                className={`$"btnPersonalized2} mx-1 fw-bold`}
+                className="btnPersonalized2 mx-1 fw-bold"
                 aria-label="Guardar cambios"
                 onClick={handleClick}
               >
@@ -394,7 +394,7 @@ const TableC = ({ tableID }) => {
               </Button>
               <Button
                 type="button"
-                className={`$"btnPersonalized1} mx-1 fw-bold`}
+                className="btnPersonalized1 mx-1 fw-bold"
                 aria-label="Cancelar"
                 onClick={handleCloseEditarPerfil}
               >
