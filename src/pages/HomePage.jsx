@@ -14,8 +14,8 @@ const HomePage = () => {
       <NuestrasMarcas />
       <NuestrosServicios />
       <NuestrosProfesionales />
-      <DireccionC />
       <PubliPeluqueria />
+      <DireccionC />
     </main>
   );
 };
