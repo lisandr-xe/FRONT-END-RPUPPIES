@@ -1,10 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { Button, Container, Form, Modal } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { z } from "zod";
 import DataTable from "react-data-table-component";
 import "../css/TableC.css";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
 
 const TableC = ({ tableID }) => {
   const [tableData, setTableData] = useState([]);
@@ -13,41 +17,59 @@ const TableC = ({ tableID }) => {
   const [pending, setPending] = useState(true);
   const [showEditarPerfil, setShowEditarPerfil] = useState(false);
   const [modalEditarPerfilData, setModalEditarPerfilData] = useState({});
+  const [formData, setFormData] = useState([]);
+  const navigate = useNavigate();
 
-  const handleCloseEditarPerfil = () => setShowEditarPerfil(false);
-  const handleShowEditarPerfil = (row) => {
-    setShowEditarPerfil(true);
-    setModalEditarPerfilData({
-      nombre: row.nombre,
-      apellido: row.apellido,
-      email: row.email,
-      telefono: row.telefono,
-      rol: row.rol,
-      _id: row._id,
-    });
-  };
+  //AXIOS
 
   const client = axios.create({
     baseURL: "http://localhost:3001/api/usuarios",
   });
 
-  const handleChange = (e) => {
-    setModalEditarPerfilData({
-      ...modalEditarPerfilData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // ZOD
 
-  const handleClick = async (e) => {
-    e.preventDefault();
+  const userSchema = z.object({
+    nombre: z
+      .string({ message: "Formato de nombre invalido" })
+      .max(25, { message: "Máximo permitido: 25 caracteres" })
+      .min(1, { message: "Campo requerido" }),
+    apellido: z
+      .string({ message: "Formato de apellido invalido" })
+      .max(25, { message: "Máximo permitido: 25 caracteres" })
+      .min(1, { message: "Campo requerido" }),
+    email: z
+      .string({ message: "Formato de email invalido" })
+      .email({ message: "Formato de email invalido" }),
+    telefono: z
+      .string()
+      .min(7, { message: "Mínimo requerido: 7 dígitos" })
+      .max(10, { message: "Máximo permitido: 10 dígitos" }),
+    rol: z.enum(["user", "admin"], {
+      message: "Solo los tipos 'user' y 'admin' estan permitidos",
+    }),
+  });
 
-    console.log(modalEditarPerfilData, modalEditarPerfilData._id);
+  //REACT HOOK FORM
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm({
+    defaultValues: {
+      nombre: formData.nombre,
+      apellido: formData.apellido,
+      email: formData.email,
+      telefono: formData.telefono,
+      rol: formData.telefono,
+    },
+    resolver: zodResolver(userSchema),
+  });
 
+  const onSubmit = async (e) => {
     try {
-      const response = await client.put(
-        `/${modalEditarPerfilData._id}`,
-        modalEditarPerfilData
-      );
+      const response = await client.put(`/${formData._id}`, e);
       if (response.status === 200) {
         Swal.fire({
           title: "Los datos se actualizaron con exito",
@@ -68,7 +90,59 @@ const TableC = ({ tableID }) => {
         icon: "error",
       });
     }
+    setShowEditarPerfil(false);
+    navigate(0);
   };
+
+  const handleShowEditarPerfil = (row) => {
+    setShowEditarPerfil(true);
+    setFormData({
+      nombre: row.nombre,
+      apellido: row.apellido,
+      email: row.email,
+      telefono: row.telefono,
+      rol: row.rol,
+      _id: row._id,
+    });
+  };
+
+  const handleCloseEditarPerfil = () => setShowEditarPerfil(false);
+
+  useEffect(() => {
+    reset(formData);
+  }, [showEditarPerfil]);
+
+  // const handleClick = async (e) => {
+  //   e.preventDefault();
+
+  //   console.log(modalEditarPerfilData, modalEditarPerfilData._id);
+
+  //   try {
+  //     const response = await client.put(
+  //       `/${modalEditarPerfilData._id}`,
+  //       modalEditarPerfilData
+  //     );
+  //     if (response.status === 200) {
+  //       Swal.fire({
+  //         title: "Los datos se actualizaron con exito",
+  //         text: "Los datos del usuario se actualizaron correctamente",
+  //         icon: "success",
+  //       });
+  //     } else {
+  //       Swal.fire({
+  //         title: "Hubo un problema",
+  //         text: `Error ${response.status}: No se pudieron actualizar los datos del usuario`,
+  //         icon: "error",
+  //       });
+  //     }
+  //   } catch (error) {
+  //     Swal.fire({
+  //       title: "Hubo un problema",
+  //       text: `${error}`,
+  //       icon: "error",
+  //     });
+  //   }
+  // };
 
   const getUsers = async () => {
     try {
@@ -85,52 +159,7 @@ const TableC = ({ tableID }) => {
     getUsers();
   }, []);
 
-  const deshabilitarUsuario = async (userID, is_bloqueado) => {
-    Swal.fire({
-      icon: "question",
-      title: `Estas seguro que deseas ${
-        is_bloqueado ? "habilitar" : "deshabilitar"
-      } al usuario?`,
-      showCancelButton: true,
-      confirmButtonText: `${is_bloqueado ? "Habilitar" : "Deshabilitar"}`,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          `${
-            is_bloqueado
-              ? "El usuario fue habilitado"
-              : "El usuario fue dehabilitado"
-          }`,
-          "",
-          "success"
-        );
-        client
-          .put(`/${userID}`, {
-            bloqueado: !is_bloqueado,
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-    });
-  };
-
-  const eliminarUsuario = async (userID) => {
-    Swal.fire({
-      icon: "question",
-      title: `Estas seguro que deseas eliminar a este usuario?`,
-      showCancelButton: true,
-      confirmButtonText: "Eliminar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("El usuario fue eliminado", "", "success");
-        client.delete(`/${userID}`).catch((error) => {
-          console.log(error);
-        });
-      }
-    });
-  };
-
+  //FUNCIONES CRUD USUARIO
   const columns = [
     {
       name: "ID",
@@ -203,6 +232,57 @@ const TableC = ({ tableID }) => {
       grow: 2,
     },
   ];
+
+  const deshabilitarUsuario = async (userID, is_bloqueado) => {
+    Swal.fire({
+      icon: "question",
+      title: `Estas seguro que deseas ${
+        is_bloqueado ? "habilitar" : "deshabilitar"
+      } al usuario?`,
+      showCancelButton: true,
+      confirmButtonText: `${is_bloqueado ? "Habilitar" : "Deshabilitar"}`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          `${
+            is_bloqueado
+              ? "El usuario fue habilitado"
+              : "El usuario fue dehabilitado"
+          }`,
+          "",
+          "success"
+        );
+        client
+          .put(`/${userID}`, {
+            bloqueado: !is_bloqueado,
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        setTimeout(() => {
+          navigate(0);
+        }, 1000);
+      }
+    });
+  };
+
+  const eliminarUsuario = async (userID) => {
+    Swal.fire({
+      icon: "question",
+      title: `Estas seguro que deseas eliminar a este usuario?`,
+      showCancelButton: true,
+      confirmButtonText: "Eliminar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("El usuario fue eliminado", "", "success");
+        client.delete(`/${userID}`).catch((error) => {
+          console.log(error);
+        });
+      }
+    });
+  };
+
+  //FUNCIONES BUSCADOR TABLA
 
   const customSearch = (obj, filter, filterValue) => {
     const newObj = [];
@@ -291,7 +371,7 @@ const TableC = ({ tableID }) => {
           <Modal.Title className="text-white">Editar Perfil</Modal.Title>
         </Modal.Header>
         <Modal.Body className="bgColorFondo">
-          <Form id="form-editar-perfil">
+          <Form id="form-editar-perfil" onSubmit={handleSubmit(onSubmit)}>
             <div className="d-flex gap-3">
               <Form.Group className="mb-3">
                 <Form.Label htmlFor="nombreEditar" className="fw-bolder">
@@ -303,12 +383,12 @@ const TableC = ({ tableID }) => {
                   minLength="3"
                   maxLength="25"
                   name="nombre"
-                  value={modalEditarPerfilData.nombre}
-                  onChange={handleChange}
-                  required
                   className="bgInput"
+                  {...register("nombre")}
                 />
-                <div id="nombreErrorEditar"></div>
+                {errors.nombre && (
+                  <div className="text-danger">{errors.nombre.message}</div>
+                )}
               </Form.Group>
 
               <Form.Group className="mb-3">
@@ -322,11 +402,13 @@ const TableC = ({ tableID }) => {
                   maxLength="25"
                   name="apellido"
                   value={modalEditarPerfilData.apellido}
-                  onChange={handleChange}
                   required
                   className="bgInput"
+                  {...register("apellido")}
                 />
-                <div id="apellidoErrorEditar"></div>
+                {errors.apellido && (
+                  <div className="text-danger">{errors.apellido.message}</div>
+                )}
               </Form.Group>
             </div>
 
@@ -341,12 +423,14 @@ const TableC = ({ tableID }) => {
                 maxLength="20"
                 name="email"
                 value={modalEditarPerfilData.email}
-                onChange={handleChange}
                 required
                 className="bgInput"
                 aria-describedby="emailHelp"
+                {...register("email")}
               />
-              <div id="emailErrorEditar"></div>
+              {errors.email && (
+                <div className="text-danger">{errors.email.message}</div>
+              )}
             </Form.Group>
 
             <Form.Group className="mb-3">
@@ -354,18 +438,19 @@ const TableC = ({ tableID }) => {
                 Teléfono
               </Form.Label>
               <Form.Control
-                type="tel"
+                type="text"
                 id="telefonoEditar"
-                placeholder="Ingresa tu teléfono"
-                maxLength="10"
-                pattern="\d{10}"
+                // maxLength="10"
+                // pattern="\d{10}"
                 name="telefono"
                 value={modalEditarPerfilData.telefono}
-                onChange={handleChange}
                 required
                 className="bgInput"
+                {...register("telefono")}
               />
-              <div id="telefonoErrorEditar"></div>
+              {errors.telefono && (
+                <div className="text-danger">{errors.telefono.message}</div>
+              )}
             </Form.Group>
 
             <Form.Group className="mb-3">
@@ -373,13 +458,16 @@ const TableC = ({ tableID }) => {
               <Form.Select
                 aria-label="Default select example"
                 className="bgInput"
-                onChange={handleChange}
                 value={modalEditarPerfilData.rol}
                 name="rol"
+                {...register("rol")}
               >
                 <option value="user">user</option>
                 <option value="admin">admin</option>
               </Form.Select>
+              {errors.rol && (
+                <div className="text-danger">{errors.rol.message}</div>
+              )}
             </Form.Group>
 
             <div className="d-flex align-items-center justify-content-center">
@@ -388,7 +476,6 @@ const TableC = ({ tableID }) => {
                 id="botonGuardarCambios"
                 className="btnPersonalized2 mx-1 fw-bold"
                 aria-label="Guardar cambios"
-                onClick={handleClick}
               >
                 Guardar cambios
               </Button>
