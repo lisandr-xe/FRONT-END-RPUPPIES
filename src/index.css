@@ -67,6 +67,7 @@ footer {
 .btnPersonalized1 {
   background-color: var(--color-complementario-I) !important;
   color: var(--color-blanco) !important;
+  border: var(--color-complementario-I) !important;
 }
 
 .btnPersonalized1:hover {
@@ -83,22 +84,24 @@ footer {
 .btnPersonalized2 {
   background-color: var(--color-5) !important;
   color: var(--color-blanco) !important;
+  border: var(--color-5) !important;
+}
+
+.btnPersonalized2 {
+  background-color: var(--color-3) !important;
+  color: var(--color-blanco) !important;
+  border: var(--color-3) !important;
 }
 
 .btnPersonalized2:hover {
-  background-color: var(--color-6) !important;
+  background-color: var(--color-4) !important;
   color: var(--color-blanco) !important;
-}
-
-.btnPersonalized2:disabled {
-  background-color: #d3d3d3 !important;
-  color: #a9a9a9 !important;
-  cursor: not-allowed !important;
 }
 
 .btnPersonalized3 {
   background-color: var(--color-7) !important;
   color: var(--color-blanco) !important;
+  border: var(--color-7) !important;
 }
 
 .btnPersonalized3:hover {
@@ -115,6 +118,7 @@ footer {
 .btnPersonalized4 {
   background-color: var(--color-1) !important;
   color: var(--color-blanco) !important;
+  border: var(--color-1) !important;
 }
 
 .btnPersonalized4:hover {
@@ -129,11 +133,11 @@ footer {
 }
 
 .bgInput {
-  border: 1.8px solid var(--color-2) !important;
+  border: 1.8px solid var(--color-complementario-II) !important;
 }
 
 .bgInput:focus {
-  border: 2px solid var(--color-2) !important;
+  border: 2px solid var(--color-complementario-II) !important;
   box-shadow: 0 0 0 0.2rem var(--color-2) !important;
 }
 
