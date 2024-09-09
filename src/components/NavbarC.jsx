@@ -27,12 +27,14 @@ const NavbarC = () => {
   const handleCloseModalEditarPerfil = () => setShowModalEditarPerfil(false);
 
   //###################### PARA PROBAR - ELIMINAR CUANDO AGREGUEMOS TODA LA LOGICA ##########################
-  useEffect(() => {
-    setUserRole("user");
-    setUserLogged(false);
-  }, []);
+  // useEffect(() => {
+  //   setUserRole("user");
+  //   setUserLogged(false);
+  // }, []);
   //##########################################################################################################
+  useEffect(()=>{
 
+  }, [showModalIniciarSesion])
   return (
     <>
       <Navbar
