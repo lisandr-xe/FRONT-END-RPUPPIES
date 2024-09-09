@@ -65,14 +65,17 @@ const NavbarC = () => {
         expand="lg"
         className="sticky-top bgColorPrincipal text-poppins p-0"
       >
-        <Container fluid>
+        <Container fluid className="p-0">
           <Navbar.Brand>
             <Link to="/" className="me-5">
               <Image src={imgLogo} width={130} />
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse
+            className="bgColorPrincipal p-0"
+            id="basic-navbar-nav"
+          >
             {userRole === "admin" ? (
               <>
                 <Nav className="me-auto d-flex gap-4">
@@ -87,13 +90,22 @@ const NavbarC = () => {
             ) : (
               <>
                 <Nav className="me-auto d-flex gap-4">
-                  <Link to="#" className="nav-link fw-medium text-white">
+                  <Link
+                    to="#"
+                    className="nav-link fw-medium text-white text-center"
+                  >
                     Nosotros
                   </Link>
-                  <Link to="#" className="nav-link fw-medium text-white">
+                  <Link
+                    to="#"
+                    className="nav-link fw-medium text-white text-center"
+                  >
                     Servicios
                   </Link>
-                  <Link to="#" className="nav-link fw-medium text-white">
+                  <Link
+                    to="#"
+                    className="nav-link fw-medium text-white text-center"
+                  >
                     Contacto
                   </Link>
                 </Nav>
@@ -151,7 +163,7 @@ const NavbarC = () => {
                 </>
               ) : (
                 <>
-                  <div className="d-flex gap-2">
+                  <div className="d-flex gap-2 justify-content-center py-3">
                     <button
                       className="btn-1"
                       onClick={handleOpenModalIniciarSesion}
