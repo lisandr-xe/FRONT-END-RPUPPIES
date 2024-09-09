@@ -2,7 +2,7 @@ import BannerC from "../components/BannerC";
 import Bienvenidad from "../components/Bienvenidad";
 import DireccionC from "../components/DireccionC";
 import NuestrasMarcas from "../components/NuestrasMarcas";
-import NuestrosProfesionales from "../components/nuestrosProfesionales";
+import NuestrosProfesionales from "../components/NuestrosProfesionales";
 import NuestrosServicios from "../components/NuestrosServicios";
 import PubliPeluqueria from "../components/PubliPeluqueria";
 
