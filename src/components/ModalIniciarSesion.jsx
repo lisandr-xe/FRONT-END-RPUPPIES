@@ -33,7 +33,6 @@ function ModalIniciarSesion({ show, handleClose }) {
   const onSubmit = async (e) => {
     try {
       const response = await client.post("/login", e);
-      console.log(response.data);
       if (response.data.token) {
         Swal.fire({
           title: "Bienvenido",
@@ -42,12 +41,12 @@ function ModalIniciarSesion({ show, handleClose }) {
         });
         sessionStorage.setItem("userToken", response.data.token);
         sessionStorage.setItem("userRole", response.data.rol);
+        handleClose();
         navigate("/");
       } else {
-        console.log(response.data);
         Swal.fire({
           title: "Algo salio mal",
-          text: `${response.data.mensajeError}`,
+          text: `${response.data}`,
           icon: "error",
         });
       }
@@ -128,6 +127,7 @@ function ModalIniciarSesion({ show, handleClose }) {
               type="reset"
               className="btnPersonalized1 mx-1 fw-bold"
               aria-label="Cancelar"
+              onClick={handleClose}
             >
               Cancelar
             </Button>

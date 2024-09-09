@@ -205,9 +205,9 @@ const TableC = ({ tableID }) => {
               }}
             >
               {row.bloqueado ? (
-                <i className="bi bi-person-fill-slash fs-3"></i>
-              ) : (
                 <i className="bi bi-person-fill-check fs-3"></i>
+              ) : (
+                <i className="bi bi-person-fill-slash fs-3"></i>
               )}
             </button>
             <button
