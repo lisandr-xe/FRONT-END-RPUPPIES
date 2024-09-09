@@ -7,6 +7,8 @@ import 'datatables.net-responsive-dt/css/responsive.dataTables.min.css';
 import 'datatables.net-responsive';
 import '../index.css';
 import Swal from 'sweetalert2';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const TableTurnos = ({ turnos }) => {
     const tablaturnos = useRef();
@@ -32,45 +34,23 @@ const TableTurnos = ({ turnos }) => {
     const handleClose = () => setShow(null);
     const handleShow = (id) => setShow(id); 
 
-    const [fechaTurno, setFechaTurno] = useState('');
+    const [startDate, setStartDate] = useState(new Date());
 
+    const isWeekday = (date) => {
+        const day = date.getDay(); // 0 es domingo, 6 es sábado
+        return day !== 0 && day !== 6; // Retorna true solo si no es sábado ni domingo
+      };
     // Función para obtener la fecha de hoy en formato AAAA-MM-DD
     const obtenerFechaHoy = () => {
         const hoy = new Date();
         return hoy.toISOString().split('T')[0]; // Retorna la fecha en formato AAAA-MM-DD
     };
-
     // Función para obtener la fecha máxima (2 meses hacia adelante)
     const obtenerFechaMaxima = () => {
         const hoy = new Date();
         hoy.setMonth(hoy.getMonth() + 2); // Avanza 2 meses
         return hoy.toISOString().split('T')[0]; // Retorna la fecha en formato AAAA-MM-DD
     };
-
-    // Función para verificar si la fecha es fin de semana
-    const esFinDeSemana = (fecha) => {
-        const dia = new Date(fecha).getDay(); // getDay() retorna el día de la semana (0=Domingo, 6=Sábado)
-        return dia === 5 || dia === 6; // True si es Sábado o Domingo
-    };
-
-    // Manejar el cambio de la fecha seleccionada
-    const handleFechaChange = (e) => {
-        const nuevaFecha = e.target.value;
-
-        // Validar que no sea fin de semana
-        if (esFinDeSemana(nuevaFecha)) {
-            Swal.fire({
-                icon: "error",
-                text: "Fecha invalida, solo se permite de Lunes a Viernes!",
-              });
-            setFechaTurno(''); // Limpia el campo de fecha si es fin de semana
-        } else {
-            setFechaTurno(nuevaFecha); // Actualiza la fecha si es válida
-        }
-    };
-
-
-        const [searchQuery, setSearchQuery] = useState('');
       
         const handleSearch = (e) => {
           e.preventDefault();
@@ -122,21 +102,46 @@ const TableTurnos = ({ turnos }) => {
                                     <Col xs={12} md={6}>
                                         <Form.Group className="mb-3" controlId="fechaTurno">
                                             <Form.Label>Fecha</Form.Label>
-                                            <Form.Control type="date" aria-label="Date" defaultValue={turno.fecha} onChange={handleFechaChange} min={obtenerFechaHoy()} max={obtenerFechaMaxima()} required/>
+                                            <DatePicker selected={startDate} 
+                                            onChange={(fecha) => setStartDate(fecha)} 
+                                            dateFormat={'yyyy/MM/dd'} 
+                                            minDate={obtenerFechaHoy()} 
+                                            maxDate={obtenerFechaMaxima()}
+                                            filterDate={isWeekday }
+                                            />
+                                            
                                         </Form.Group>
                                     </Col>
                                     <Col xs={12} md={6}>
                                         <Form.Group className="mb-3" controlId="horaTurno">
                                             <Form.Label>Hora</Form.Label>
-                                            <Form.Control type="time" aria-label="Time" defaultValue={turno.hora} min={'10:00'} max={'18:00'} step={1800} required/>
+                                            <Form.Select type="time" aria-label="Time" defaultValue={turno.hora} min={'10:00'} max={'18:00'} required>
+                                            <option key={1} value={'10:00'}>10:00</option>
+                                            <option key={2} value={'10:30'}>10:30</option>
+                                            <option key={3} value={'11:00'}>11:00</option>
+                                            <option key={4} value={'11:30'}>11:30</option>
+                                            <option key={5} value={'12:00'}>12:00</option>
+                                            <option key={6} value={'12:30'}>12:30</option>
+                                            <option key={7} value={'13:00'}>13:00</option>
+                                            <option key={8} value={'13:30'}>13:30</option>
+                                            <option key={9} value={'14:00'}>14:00</option>
+                                            <option key={10} value={'14:30'}>14:30</option>
+                                            <option key={11} value={'15:00'}>15:00</option>
+                                            <option key={12} value={'15:30'}>15:30</option>
+                                            <option key={13} value={'16:00'}>16:00</option>
+                                            <option key={14} value={'16:30'}>16:30</option>
+                                            <option key={15} value={'17:00'}>17:00</option>
+                                            <option key={16} value={'17:30'}>17:30</option>
+                                            </Form.Select>
                                         </Form.Group>
                                     </Col>
                                     <Col xs={12} md={6}>
                                         <Form.Group className="mb-3" controlId="veterinarioTurno">
                                             <Form.Label>Veterinario</Form.Label>
-                                            <Form.Control type='search' placeholder="Seleccionar Veterinario" value={searchQuery}  onChange={(e) => setSearchQuery(e.target.value)} required>
-
-                                            </Form.Control>
+                                            <Form.Select type='search' placeholder="Seleccionar Veterinario" required>
+                                            <option key={1} value={'Jose Hernandez'}>Jose Hernandez</option>
+                                            <option key={2} value={'Ricardo Lopez'}>Ricardo Lopez</option>
+                                            </Form.Select>
                                         </Form.Group>
                                     </Col>
                                     <Col xs={12} md={6}>
