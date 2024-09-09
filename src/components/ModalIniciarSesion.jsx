@@ -38,12 +38,13 @@ function ModalIniciarSesion({ show, handleClose }) {
           title: "Bienvenido",
           text: `${response.data.mensaje}`,
           icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
         });
         sessionStorage.setItem("userToken", response.data.token);
         sessionStorage.setItem("userRole", response.data.rol);
         handleClose();
-        reset();
-        navigate("/");
+        navigate(0);
       } else {
         Swal.fire({
           title: "Algo salio mal",
@@ -128,10 +129,7 @@ function ModalIniciarSesion({ show, handleClose }) {
               type="reset"
               className="btnPersonalized1 mx-1 fw-bold"
               aria-label="Cancelar"
-              onClick={() => {
-                handleClose();
-                reset();
-              }}
+              onClick={handleClose}
             >
               Cancelar
             </Button>
