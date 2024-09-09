@@ -5,8 +5,10 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 function ModalIniciarSesion({ show, handleClose }) {
+  const navigate = useNavigate();
   const client = axios.create({
     baseURL: "http://localhost:3001/api/usuarios",
   });
@@ -39,6 +41,8 @@ function ModalIniciarSesion({ show, handleClose }) {
           icon: "success",
         });
         sessionStorage.setItem("userToken", response.data.token);
+        sessionStorage.setItem("userRole", response.data.rol);
+        navigate("/");
       } else {
         console.log(response.data);
         Swal.fire({

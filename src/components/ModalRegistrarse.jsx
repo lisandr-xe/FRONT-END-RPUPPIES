@@ -49,9 +49,10 @@ function ModalRegistrarse({ show, handleClose }) {
 
   const onSubmit = async (e) => {
     if (e.contrasenia === e.repetirContrasenia) {
-      const { repetirContrasenia, ...userData } = e;
-      const response = await client.post("/", userData);
-      if (response.status === 201) {
+      try {
+        const { repetirContrasenia, ...userData } = e;
+        const response = await client.post("/", userData);
+
         Swal.fire({
           title: "Usuario creado con exito",
           text: "Te hemos enviado un mail de bienvenida",
@@ -59,23 +60,33 @@ function ModalRegistrarse({ show, handleClose }) {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
-      } else {
-        Swal.fire({
-          title: "Algo salió mal",
-          text: `${response.data}`,
-          icon: "error",
+        sessionStorage.setItem("userToken", response.data.token);
+        sessionStorage.setItem("userRole", response.data.rol);
+        handleClose();
+        setTimeout(() => {
+          navigate(0);
+        }, 1000);
+      } catch (error) {
+        setError("root", {
+          message: error.response.data.mensaje,
         });
       }
     }
   };
 
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal
+      show={show}
+      onHide={() => {
+        handleClose();
+        reset();
+      }}
+      centered
+    >
       <Modal.Header
         closeButton
         closeVariant="white"
-        className={styleGeneral.bgColorPrincipal}
+        className="bgColorPrincipal"
       >
         <Modal.Title className="text-white">Registrarse</Modal.Title>
       </Modal.Header>
@@ -97,7 +108,11 @@ function ModalRegistrarse({ show, handleClose }) {
                 className="bgInput"
                 {...register("nombre")}
               />
-              {errors.nombre && <div>{errors.nombre.message}</div>}
+              {errors.nombre && (
+                <div className="text-danger fw-bold">
+                  {errors.nombre.message}
+                </div>
+              )}
             </Form.Group>
 
             <Form.Group className="mb-3">
@@ -114,7 +129,11 @@ function ModalRegistrarse({ show, handleClose }) {
                 className="bgInput"
                 {...register("apellido")}
               />
-              {errors.apellido && <div>{errors.apellido.message}</div>}
+              {errors.apellido && (
+                <div className="text-danger fw-bold">
+                  {errors.apellido.message}
+                </div>
+              )}
             </Form.Group>
           </div>
           <Form.Group className="mb-3">
@@ -131,7 +150,9 @@ function ModalRegistrarse({ show, handleClose }) {
               className="bgInput"
               {...register("email")}
             />
-            {errors.email && <div>{errors.email.message}</div>}
+            {errors.email && (
+              <div className="text-danger fw-bold">{errors.email.message}</div>
+            )}
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -148,7 +169,11 @@ function ModalRegistrarse({ show, handleClose }) {
               className="bgInput"
               {...register("telefono")}
             />
-            {errors.telefono && <div>{errors.telefono.message}</div>}
+            {errors.telefono && (
+              <div className="text-danger fw-bold">
+                {errors.telefono.message}
+              </div>
+            )}
           </Form.Group>
 
           <div className="d-flex gap-3">
@@ -167,7 +192,11 @@ function ModalRegistrarse({ show, handleClose }) {
                 className="bgInput"
                 {...register("contrasenia")}
               />
-              {errors.contrasenia && <div>{errors.contrasenia.message}</div>}
+              {errors.contrasenia && (
+                <div className="text-danger fw-bold">
+                  {errors.contrasenia.message}
+                </div>
+              )}
             </Form.Group>
 
             <Form.Group className="mb-3">
@@ -189,10 +218,15 @@ function ModalRegistrarse({ show, handleClose }) {
                 {...register("repetirContrasenia")}
               />
               {errors.repetirContrasenia && (
-                <div>{errors.repetirContrasenia.message}</div>
+                <div className="text-danger fw-bold">
+                  {errors.repetirContrasenia.message}
+                </div>
               )}
             </Form.Group>
           </div>
+          {errors.root && (
+            <div className="text-danger fw-bold">{errors.root.message}</div>
+          )}
 
           <div className="d-flex align-items-center justify-content-center mt-3">
             <Button
@@ -200,14 +234,18 @@ function ModalRegistrarse({ show, handleClose }) {
               id="botonRegistrarse"
               className="btnPersonalized2 mx-1 fw-bold"
               aria-label="Registrarse"
+              disabled={isSubmitting}
             >
-              Registrarse
+              {isSubmitting ? "Registrando..." : "Registrarse"}
             </Button>
             <Button
               type="reset"
               className="styleGeneral.btnPersonalized1 mx-1 fw-bold"
               aria-label="Cancelar"
-              onClick={handleClose}
+              onClick={() => {
+                handleClose();
+                reset();
+              }}
             >
               Cancelar
             </Button>

@@ -34,12 +34,14 @@ const NavbarC = () => {
   const handleCloseModalEditarPerfil = () => setShowModalEditarPerfil(false);
 
   useEffect(() => {
-    setUserRole("user");
+    if (sessionStorage.getItem("userRole")) {
+      setUserRole(sessionStorage.getItem("userRole"));
+    }
     const userToken = sessionStorage.getItem("userToken") || null;
     if (userToken) {
       setUserLogged(true);
     }
-  }, []);
+  }, [userLogged, userRole]);
 
   const handleCloseSession = () => {
     sessionStorage.removeItem("userToken");
