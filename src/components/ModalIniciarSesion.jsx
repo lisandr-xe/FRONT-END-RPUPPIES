@@ -42,6 +42,7 @@ function ModalIniciarSesion({ show, handleClose }) {
         sessionStorage.setItem("userToken", response.data.token);
         sessionStorage.setItem("userRole", response.data.rol);
         handleClose();
+        reset();
         navigate("/");
       } else {
         Swal.fire({
@@ -127,7 +128,10 @@ function ModalIniciarSesion({ show, handleClose }) {
               type="reset"
               className="btnPersonalized1 mx-1 fw-bold"
               aria-label="Cancelar"
-              onClick={handleClose}
+              onClick={() => {
+                handleClose();
+                reset();
+              }}
             >
               Cancelar
             </Button>
