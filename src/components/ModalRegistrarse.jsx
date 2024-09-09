@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function ModalRegistrarse({ show, handleClose }) {
+
   const navigate = useNavigate();
   const [formRegister, setFormRegister] = useState({});
   const [errores, setErrores] = useState({});
@@ -246,6 +247,7 @@ function ModalRegistrarse({ show, handleClose }) {
       </Modal.Body>
     </Modal>
   );
+    
 }
 
 export default ModalRegistrarse;

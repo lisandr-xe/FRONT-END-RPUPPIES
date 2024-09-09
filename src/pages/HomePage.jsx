@@ -8,17 +8,16 @@ import PubliPeluqueria from "../components/PubliPeluqueria";
 
 const HomePage = () => {
   return (
-    <main className='flex-grow-1'>
-      <BannerC/>
-      <Bienvenidad/>
-      <NuestrasMarcas/>
-      <NuestrosServicios/>
-      <PubliPeluqueria/>
-      <DireccionC/>
-      <NuestrosProfesionales/>
+    <main className="flex-grow-1">
+      <BannerC />
+      <Bienvenidad />
+      <NuestrasMarcas />
+      <NuestrosServicios />
+      <NuestrosProfesionales />
+      <PubliPeluqueria />
+      <DireccionC />
     </main>
   );
 };
-
 
 export default HomePage;
