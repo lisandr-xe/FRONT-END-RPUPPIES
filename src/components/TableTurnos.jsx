@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+
 const TableTurnos = ({ turnos }) => {
     const tablaturnos = useRef();
     
@@ -36,6 +37,7 @@ const TableTurnos = ({ turnos }) => {
 
     const [startDate, setStartDate] = useState(new Date());
 
+
     const isWeekday = (date) => {
         const day = date.getDay(); // 0 es domingo, 6 es sábado
         return day !== 0 && day !== 6; // Retorna true solo si no es sábado ni domingo
@@ -56,6 +58,9 @@ const TableTurnos = ({ turnos }) => {
           e.preventDefault();
           onSearch(searchQuery); // Función para manejar la búsqueda
         };
+
+   
+
 
     return (
         <div className='table-responsive'>
