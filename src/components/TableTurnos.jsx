@@ -42,31 +42,31 @@ const TableTurnos = ({ turnos, setTurnos }) => {
   const handleClose = () => setShow(null);
   const handleShow = (id) => {
     setShow(id);
-    setSelectedTurno(turnos[id]); // Establece el turno seleccionado al abrir el modal
+    setSelectedTurno(turnos[id]); 
   };
 
   const isWeekday = (date) => {
-    const day = date.getDay(); // 0 es domingo, 6 es sábado
-    return day !== 0 && day !== 6; // Retorna true solo si no es sábado ni domingo
+    const day = date.getDay(); 
+    return day !== 0 && day !== 6;
   };
 
   const obtenerFechaHoy = () => {
     const hoy = new Date();
-    return hoy.toISOString().split("T")[0]; // Retorna la fecha en formato AAAA-MM-DD
+    return hoy.toISOString().split("T")[0];
   };
 
   const obtenerFechaMaxima = () => {
     const hoy = new Date();
-    hoy.setMonth(hoy.getMonth() + 2); // Avanza 2 meses
-    return hoy.toISOString().split("T")[0]; // Retorna la fecha en formato AAAA-MM-DD
+    hoy.setMonth(hoy.getMonth() + 2);
+    return hoy.toISOString().split("T")[0];
   };
 
-  // Función para manejar el envío del formulario
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // Enviar los datos a la API (por ejemplo con clienteAxios)
+      
       const response = await clienteAxios.put(
         `/turnos/${selectedTurno._id}`,
         selectedTurno
@@ -90,7 +90,7 @@ const TableTurnos = ({ turnos, setTurnos }) => {
             });
           }
         });
-        handleClose(); // Cerrar el modal
+        handleClose(); 
       }
     } catch (error) {
       console.error("Error al actualizar el turno:", error);
@@ -98,7 +98,7 @@ const TableTurnos = ({ turnos, setTurnos }) => {
     }
   };
 
-  // Función para manejar el cambio en los inputs del formulario
+
   const handleInputChange = (e) => {
     setSelectedTurno({
       ...selectedTurno,
@@ -108,11 +108,11 @@ const TableTurnos = ({ turnos, setTurnos }) => {
 
   const handleDateChange = (date) => {
     function formatDateToYYYYMMDD(date) {
-      const year = date.getFullYear(); // Obtiene el año completo (YYYY)
-      const month = String(date.getMonth() + 1).padStart(2, "0"); // Obtiene el mes y agrega 1 porque getMonth() devuelve de 0 a 11. Luego agrega 0 delante si es necesario
-      const day = String(date.getDate()).padStart(2, "0"); // Obtiene el día y agrega 0 delante si es necesario
+      const year = date.getFullYear(); 
+      const month = String(date.getMonth() + 1).padStart(2, "0"); 
+      const day = String(date.getDate()).padStart(2, "0"); 
 
-      return `${year}-${month}-${day}`; // Retorna el formato YYYY-MM-DD
+      return `${year}-${month}-${day}`; 
     }
     const formmateddate = formatDateToYYYYMMDD(date);
     setStartDate(date);
@@ -122,7 +122,6 @@ const TableTurnos = ({ turnos, setTurnos }) => {
     });
   };
 
-  // Función para manejar la eliminación del turno
   const handleDelete = async (id) => {
     const turnoSeleccionado = turnos[id];
 
@@ -143,7 +142,7 @@ const TableTurnos = ({ turnos, setTurnos }) => {
           );
           if (response.status === 200) {
             Swal.fire("Eliminado!", "El turno ha sido eliminado.", "success");
-            // Actualizar la lista de turnos
+
             setTurnos((prevTurnos) =>
               prevTurnos.filter((_, index) => index !== id)
             );
@@ -159,46 +158,46 @@ const TableTurnos = ({ turnos, setTurnos }) => {
   const [turnosAsignados, setTurnosAsignados] = useState({});
 
   useEffect(() => {
-    const turnosAsignadosTemp = {}; // Inicializar un objeto temporal
+    const turnosAsignadosTemp = {}; 
   
-    // Recorre los turnos para crear la estructura { fecha: { hora: [veterinario1, veterinario2] } }
+
     turnos.forEach((turno) => {
       const { fecha, hora, veterinario } = turno;
   
-      // Si no existe la fecha en el objeto, la inicializamos
+
       if (!turnosAsignadosTemp[fecha]) {
         turnosAsignadosTemp[fecha] = {};
       }
   
-      // Si no existe la hora en esa fecha, la inicializamos
+
       if (!turnosAsignadosTemp[fecha][hora]) {
         turnosAsignadosTemp[fecha][hora] = [];
       }
   
-      // Almacena el veterinario asignado a esa fecha y hora
+
       turnosAsignadosTemp[fecha][hora].push(veterinario);
     });
   
-    setTurnosAsignados(turnosAsignadosTemp); // Actualiza el estado con los turnos asignados
+    setTurnosAsignados(turnosAsignadosTemp);
   }, [turnos]); 
 
 const horarios = ['10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30',]
 
 const obtenerHorariosDisponibles = () => {
-    // Asegúrate de que `selectedTurno.fecha` y `selectedTurno.veterinario` tengan valores válidos
+
     if (!selectedTurno.fecha || !selectedTurno.veterinario) {
-      return horarios; // Si no hay fecha o veterinario seleccionado, devuelve todos los horarios
+      return horarios; 
     }
   
-    // Comprobar si hay turnos asignados para la fecha seleccionada
+
     const turnosParaFecha = turnosAsignados[selectedTurno.fecha] || {};
   
-    // Filtrar los horarios que no están ocupados por el veterinario seleccionado
+
     return horarios.filter((hora) => {
-      // Asegúrate de que `turnosParaFecha[hora]` sea un array
+
       const horariosOcupados = turnosParaFecha[hora] || [];
   
-      // Verificar si `horariosOcupados` incluye al veterinario seleccionado
+
       return !horariosOcupados.includes(selectedTurno.veterinario);
     });
   };

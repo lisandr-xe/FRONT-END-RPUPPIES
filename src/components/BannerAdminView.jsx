@@ -10,7 +10,7 @@ const BannerAdminView = ({ turnos, setTurnos }) => {
   const [usuarios, setUsuarios] = useState([]);
   const [mascotas, setMascotas] = useState([]);
   const [mascotasFiltradas, setMascotasFiltradas] = useState([]);
-  const [selectedUsuario, setSelectedUsuario] = useState(null);
+  const [selectedUsuario, setSelectedUsuario] = useState("");
   const [selectedMascota, setSelectedMascota] = useState("");
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const BannerAdminView = ({ turnos, setTurnos }) => {
 
         const mascotasResponse = await clienteAxios.get("/mascotas");
         setMascotas(mascotasResponse.data);
-        setMascotasFiltradas(mascotasResponse.data); // Inicialmente, todas las mascotas
+        setMascotasFiltradas(mascotasResponse.data); 
       } catch (error) {
         console.error("Error al obtener usuarios o mascotas:", error);
       }
@@ -33,16 +33,21 @@ const BannerAdminView = ({ turnos, setTurnos }) => {
   const handleUsuarioChange = (e) => {
     const usuarioId = e.target.value;
     setSelectedUsuario(usuarioId);
-    setSelectedMascota(""); // Limpiar selección de mascota
+    setSelectedMascota("");
+  
 
     const usuario = usuarios.find((usuario) => usuario._id === usuarioId);
-    if (usuario) {
+  
+
+    if (usuario && Array.isArray(usuario.mascotas)) {
+
       const mascotasDeUsuario = mascotas.filter((mascota) =>
         usuario.mascotas.includes(mascota._id)
       );
       setMascotasFiltradas(mascotasDeUsuario);
     } else {
-      setMascotasFiltradas(mascotas); // Si no hay usuario seleccionado, mostrar todas las mascotas
+
+      setMascotasFiltradas(mascotas);
     }
   };
 
@@ -148,7 +153,7 @@ const BannerAdminView = ({ turnos, setTurnos }) => {
 
   const obtenerHorariosDisponibles = () => {
     if (!selectedTurno.fecha || !selectedTurno.veterinario) {
-      return horarios; // Si no hay fecha o veterinario seleccionado, devuelve todos los horarios
+      return horarios;
     }
 
     const turnosParaFecha = turnosAsignados[selectedTurno.fecha] || {};
@@ -249,6 +254,7 @@ const BannerAdminView = ({ turnos, setTurnos }) => {
                 </Col>
                 <Col xs={12} md={6}>
                   <Form.Group className="mb-3" controlId="horaTurno">
+                   
                     <Form.Label>Hora</Form.Label>
                     <Form.Select
                       value={selectedTurno.hora}
@@ -286,12 +292,11 @@ const BannerAdminView = ({ turnos, setTurnos }) => {
                   <Form.Group className="mb-3" controlId="usuarioSelect">
                     <Form.Label>Usuario</Form.Label>
                     <Form.Select
-                      value={selectedTurno.usuario}
+
                       onChange={handleUsuarioChange}
                       name="usuario"
                       required
                     >
-                      <option value="">Seleccionar Usuario</option>
                       {usuarios.map((usuario) => (
                         <option key={usuario._id} value={usuario._id}>
                           {usuario.nombre}

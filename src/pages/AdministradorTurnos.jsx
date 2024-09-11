@@ -28,10 +28,10 @@ const AdministradorTurnos = () => {
 
               
 
-      // Crear el mapa de mascotas basado en los datos obtenidos
+
       const mapaMascotas = crearMapaMascotas(mascotasData);
 
-      // Reemplazar los valores en los turnos
+
       const turnosFinales = agregarPropiedadNombreMascota(turnosData, mapaMascotas);
 
       setTurnos(turnosData);
@@ -42,18 +42,18 @@ const AdministradorTurnos = () => {
     }
   };
 
-  // Crear un mapa con los nombres de las mascotas
+
   const crearMapaMascotas = (mascotas) => {
     return new Map(mascotas.map((mascota) => [mascota._id, mascota.nombre]));
   };
 
-  // Agregar la propiedad 'nombreMascota' a cada turno
+ 
   const agregarPropiedadNombreMascota = (turnos, mapaMascotas) => {
     return turnos.map((turno) => {
-      const nombreMascota = mapaMascotas.get(turno.mascota); // obtener el nombre de la mascota por ID
+      const nombreMascota = mapaMascotas.get(turno.mascota); 
       return {
         ...turno,
-        nombreMascota: nombreMascota || "Mascota fuera de la DB" // agregar la nueva propiedad sin eliminar la original
+        nombreMascota: nombreMascota || "Mascota fuera de la DB" 
       };
     });
   };
